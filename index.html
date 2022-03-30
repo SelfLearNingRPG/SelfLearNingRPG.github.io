@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelfLearNingRPG</title>
+    <style>
+        #intro {
+            @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+            font-family: 'Noto Sans TC' !important;
+            font-size: xx-large;
+            text-align: center;
+            color: rgb(3, 3, 1);
+        }
+
+        #preface {
+            @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+            font-family: 'Noto Sans TC' !important;
+            font-size: xx-large;
+            text-align: center;
+            color: rgb(238, 12, 12);
+        }
+    </style>
+</head>
+
+<body>
+    <!--Scripts here-->
+    <script src="game.js"></script>
+    <p id="intro">這裡是一個很典型的RPG世界，<br>冒險者通過攻略地下城來獲得經驗與金錢，讓自己變得更強。<br>
+        出賣靈魂👉<input type="button" onclick="disp_alert()" value="按鈕" />
+        <input type="button" onclick="disp_prompt()" value="確定" />
+        <input type="button" onclick="btclick()" value="同意" />
+    </p>
+</body>
+
+</html>
