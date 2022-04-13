@@ -35,7 +35,6 @@ function disp_alert() {
 
 function btclick() {
     var player_Id = prompt("取個名字：", "大中天");
-    // 設定一個 username cookie 裡面的值是 Mike，儲存一個月
     setCookie("player_Id", player_Id, 30);
     window.location.href = "page2.html";
 }
