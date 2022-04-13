@@ -19,7 +19,6 @@ function parseCookie() {
     return cookieObj;
 }
 
-
 function getCookieByName(name) {
     var value = parseCookie()[name];
     if (value) {
