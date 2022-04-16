@@ -2,8 +2,9 @@ function disp_alert() {
     alert("因為作者之力強制你要去當冒險者，你也無法拒絕，\n快去選擇你的職業吧！。")
 }
 
+var player_Id = '';
 function btclick() {
-    var player_Id = prompt("取個名字：", "大中天");
+    player_Id = prompt("取個名字：", "大中天");
     window.location.href = "page2.html";
 }
 
