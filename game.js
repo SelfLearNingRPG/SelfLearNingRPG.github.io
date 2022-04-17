@@ -11,5 +11,5 @@ function btclick() {
 
 function startgame() {
     player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    document.getElementById('output1').innerHTML = "這裡是你旅途的起點....<br><你出賣了你的靈魂><br>世界之聲: 你好，我是作者大人的其中一部分，你的靈魂我確實收下了。<br>現在就將用" + player_Id + "的靈魂換來的地下城挑戰許可附加在你身上…雖然我本來想這麼說，<br>但在此之前，你還不是冒險者對吧？這樣就想挑戰地下城簡直是不可能，<br>先去選個職業，有了初級的戰力後再來見我吧~。";
+    document.getElementById('output1').innerHTML = "這裡是你旅途的起點....<br><br>世界之聲: 你好，" + player_Id + "，恭候多時，我是作者大人的其中一部分，你的請求我已經收到了。<br>現在就將刻有" + player_Id + "的地下城鑰匙交給你．．．<br>雖然我本來想這麼說，但在此之前，你還沒有任何能力，這樣就想挑戰地下城簡直是白白送死，<br>先去選個職業，然後踏上變強的道路吧!<br>等時機成熟，我會再次顯現在你面前<br>祝你一切順利。";
 }
