@@ -1,0 +1,15 @@
+.ok {
+    @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+    font-family: 'Noto Sans TC' !important;
+    font-size: xx-large;
+    text-align: center;
+    color: rgb(3, 3, 1);
+}
+
+.menu {
+    @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+    font-family: 'Noto Sans TC' !important;
+    font-size: xx-large;
+    text-align: center;
+    color: rgb(3, 3, 1);
+}
