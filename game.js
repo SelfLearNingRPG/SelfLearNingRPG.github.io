@@ -19,3 +19,8 @@ document.cookie = "player_Mp=\"" + mp + "\"";
 document.cookie = "player_Hp=\"" + hp + "\"";
 document.cookie = "player_Token=" + token;
 document.cookie = "player_Pro=\"" + pro + "\"";
+
+function select() {
+    var selected = document.getElementById("pro_selsct").value;
+    console.log(selected);
+}
