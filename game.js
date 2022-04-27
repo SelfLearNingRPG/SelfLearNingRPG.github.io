@@ -21,6 +21,6 @@ document.cookie = "player_Token=" + token;
 document.cookie = "player_Pro=\"" + pro + "\"";
 
 function select() {
-    var selected = document.getElementById("pro_selsct").value;
-    console.log(selected);
+    pro = document.getElementById("pro_selsct").value;
+    document.cookie = "player_Pro=\"" + pro + "\"";
 }
