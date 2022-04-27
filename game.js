@@ -18,6 +18,7 @@ var mp, hp, token, pro;
 function select() {
     pro = document.getElementById("pro_selsct").value;
     document.cookie = "player_Pro=\"" + pro + "\"";
+    window.location.href = "page3.html";
 }
 
 document.cookie = "player_Mp=\"" + mp + "\"";
