@@ -33,6 +33,40 @@ document.cookie = "player_Token=" + token;
 
 var armor,weapend;
 
+var armors = new Array();
+armors[1] = "";
+armors[2] = "";
+armors[3] = "";
+armors[4] = "";
+armors[5] = "";
+armors[6] = "";
+armors[7] = "";
+armors[8] = "";
+armors[9] = "";
+armors[10] = "";
+armors[11] = "";
+armors[12] = "";
+armors[13] = "";
+armors[14] = "";
+armors[15] = "";
+
+var weapends = new Array();
+weapends[1] = "";
+weapends[2] = "";
+weapends[3] = "";
+weapends[4] = "";
+weapends[5] = "";
+weapends[6] = "";
+weapends[7] = "";
+weapends[8] = "";
+weapends[9] = "";
+weapends[10] = "";
+weapends[11] = "";
+weapends[12] = "";
+weapends[13] = "";
+weapends[14] = "";
+weapends[15] = "";
+
 
 function init () {
     if (pro =  "knight"){
