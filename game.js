@@ -96,3 +96,15 @@ function init() {
 function resetvalue() {
 
 }
+
+var pro_index = ["knight", "ranger", "magician"];
+var pro_items = ["騎士", "遊俠", "法師"];
+function begin() {
+    for (var i = 0; i < 3; i++) {
+        if (pro = pro_index[i]) {
+            pro = pro_items[i];
+            break;
+        }
+    }
+    document.getElementById('begin').innerHTML = "你是一個" + pro + "<br>";
+}
