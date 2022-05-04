@@ -22,9 +22,11 @@ var speed = 0;
 function select() {
     pro = document.getElementById("pro_selsct").value;
     document.cookie = "player_Pro=\"" + pro + "\"";
-    window.location.href = "page3.html";
 }
 
+function confirm() {
+    window.location.href = "page3.html";
+}
 document.cookie = "player_Mp=\"" + mp + "\"";
 document.cookie = "player_Hp=\"" + hp + "\"";
 document.cookie = "player_Token=" + token;
