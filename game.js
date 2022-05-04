@@ -52,8 +52,8 @@ function init () {
         armor = 11;
         weapend = 11;
     }
-}
-
-function levels() {
-    
+    document.cookie = "player_Mp=\"" + mp + "\"";
+    document.cookie = "player_Hp=\"" + hp + "\"";
+    document.cookie = "player_armor=\"" + armor + "\"";
+    document.cookie = "player_weapend=\"" + weapend + "\"";
 }
