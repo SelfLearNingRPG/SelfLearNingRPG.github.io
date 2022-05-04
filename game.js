@@ -24,3 +24,30 @@ function select() {
 document.cookie = "player_Mp=\"" + mp + "\"";
 document.cookie = "player_Hp=\"" + hp + "\"";
 document.cookie = "player_Token=" + token;
+
+var armor,weapend;
+
+function init () {
+    if (pro =  "knight"){
+        mp = 30;
+        hp = 100;
+        armor = 1;
+        weapend = 1;
+    }
+    else if (pro = "ranger"){
+        mp = 50;
+        hp = 45;
+        armor = 6;
+        weapend = 6;
+    }
+    else if (pro = "magician"){
+        mp = 75;
+        hp = 50;
+        armor = 11;
+        weapend = 11;
+    }
+}
+
+function levels() {
+    
+}
