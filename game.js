@@ -16,7 +16,7 @@ function startgame() {
 var mp = 0;
 var hp = 0;
 var token = 0;
-var pro = 0;
+var pro = "defult";
 var speed = 0;
 
 function select() {
@@ -31,7 +31,7 @@ document.cookie = "player_Mp=\"" + mp + "\"";
 document.cookie = "player_Hp=\"" + hp + "\"";
 document.cookie = "player_Token=" + token;
 
-var armor,weapend;
+var armor, weapend;
 
 var armors = new Array();
 armors[1] = "";
@@ -68,20 +68,20 @@ weapends[14] = "";
 weapends[15] = "";
 
 
-function init () {
-    if (pro =  "knight"){
+function init() {
+    if (pro = "knight") {
         mp = 30;
         hp = 100;
         armor = 1;
         weapend = 1;
     }
-    else if (pro = "ranger"){
+    else if (pro = "ranger") {
         mp = 50;
         hp = 45;
         armor = 6;
         weapend = 6;
     }
-    else if (pro = "magician"){
+    else if (pro = "magician") {
         mp = 75;
         hp = 50;
         armor = 11;
@@ -93,6 +93,6 @@ function init () {
     document.cookie = "player_weapend=\"" + weapend + "\"";
 }
 
-function resetvalue(){
+function resetvalue() {
 
 }
