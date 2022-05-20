@@ -113,7 +113,33 @@ function begin() {
     document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>";
 }
 
-function fight() {
-    
+var enemyv, eatk, edef;
 
+
+function fight() {
+    enemyv = Math.sqrt(eatk * eatk + edef * edef)
+    if( def * 1.8 > atk ){
+        if(def * 2 + atk >= enemyv ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if( def * 1.8 == atk ){
+        if(def * 1.5 + atk * 1.5 >= enemyv ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if( def * 1.8 < atk ){
+        if(def + atk * 2 >= enemyv ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
