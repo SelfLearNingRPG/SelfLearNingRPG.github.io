@@ -31,7 +31,7 @@ document.cookie = "player_Mp=\"" + mp + "\"";
 document.cookie = "player_Hp=\"" + hp + "\"";
 document.cookie = "player_Token=" + token;
 
-var armor, weapend;
+var armor, weapend,def,atk;
 
 var armors = new Array();
 armors[1] = "鐵甲";
@@ -111,4 +111,9 @@ function begin() {
         zy = "法師";
     }
     document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>";
+}
+
+function fight() {
+    
+
 }
