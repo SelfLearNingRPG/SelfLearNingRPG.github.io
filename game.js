@@ -38,8 +38,8 @@ function select() {
 function confirm() {
     window.location.href = "page3.html";
 }
-document.cookie = "player_Mp=\"" + mp + "\"";
-document.cookie = "player_Hp=\"" + hp + "\"";
+document.cookie = "player_Mp=" + mp + "";
+document.cookie = "player_Hp=" + hp + "";
 document.cookie = "player_Token=" + token;
 
 var armor, weapend, def, atk;
