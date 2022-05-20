@@ -124,7 +124,6 @@ function begin() {
     }
     init();
     document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>你目前的能力值如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
-
 }
 
 var enemyv, eatk, edef;
