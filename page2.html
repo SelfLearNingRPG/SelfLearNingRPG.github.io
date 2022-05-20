@@ -18,18 +18,21 @@
     </p>
 
     <p id="output1" class="ok"></p>
-    <p class="ok"><img src = "images/introduction.jpeg" width = "80%"></p>
-    <p class="menu">
-        <select id="pro_selsct" class="ok" onchange="select();">
-            <option value="defult">請選擇你的職業</option>
-            <option value="knight">騎士</option>
-            <option value="ranger">遊俠</option>
-            <option value="magician">法師</option>
-        </select>
-    </p>
-    <p class="ok">
-        決定好了？<input type="button" onclick="confirm();" value="確定！" style="font-size: x-large;"/>
-    </p>
+    <div class="ok" style="display:none;" id="introduction">
+        <img src="images/introduction.jpeg" width="80%">
+        <p class="menu">
+            <select id="pro_selsct" class="ok" onchange="select();">
+                <option value="defult">請選擇你的職業</option>
+                <option value="knight">騎士</option>
+                <option value="ranger">遊俠</option>
+                <option value="magician">法師</option>
+            </select>
+        </p>
+        <p class="ok">
+            決定好了？<input type="button" onclick="confirm();" value="確定！" style="font-size: x-large;" />
+        </p>
+    </div>
+
 </body>
 
 </html>
