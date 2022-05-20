@@ -21,7 +21,16 @@ var speed = 0;
 
 function select() {
     pro = document.getElementById("pro_selsct").value;
-    document.cookie = "player_Pro=\"" + pro + "\"";
+    if (pro == "knight") {
+        pro = 0;
+    }
+    if (pro == "ranger") {
+        pro = 1;
+    }
+    if (pro == "magician") {
+        pro = 2;
+    }
+    document.cookie = "player_Pro=" + pro + "";
 }
 
 function confirm() {
@@ -31,7 +40,7 @@ document.cookie = "player_Mp=\"" + mp + "\"";
 document.cookie = "player_Hp=\"" + hp + "\"";
 document.cookie = "player_Token=" + token;
 
-var armor, weapend,def,atk;
+var armor, weapend, def, atk;
 
 var armors = new Array();
 armors[1] = "鐵甲";
@@ -100,16 +109,18 @@ function resetvalue() {
 
 
 function begin() {
-    var zy;
-    if(pro == "knight"){
+    var zy = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    if (zy == "0") {
         zy = "騎士";
     }
-    else if(pro == "ranger"){
+    if (zy == "1") {
         zy = "遊俠";
     }
-    else if(pro == "magician"){
+    if (zy == "2") {
         zy = "法師";
     }
+
     document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>";
 }
 
@@ -118,27 +129,27 @@ var enemyv, eatk, edef;
 
 function fight() {
     enemyv = Math.sqrt(eatk * eatk + edef * edef)
-    if( def * 1.8 > atk ){
-        if(def * 2 + atk >= enemyv ){
+    if (def * 1.8 > atk) {
+        if (def * 2 + atk >= enemyv) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
-    if( def * 1.8 == atk ){
-        if(def * 1.5 + atk * 1.5 >= enemyv ){
+    if (def * 1.8 == atk) {
+        if (def * 1.5 + atk * 1.5 >= enemyv) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
-    if( def * 1.8 < atk ){
-        if(def + atk * 2 >= enemyv ){
+    if (def * 1.8 < atk) {
+        if (def + atk * 2 >= enemyv) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
