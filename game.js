@@ -15,6 +15,7 @@ function startgame() {
     var pic = document.getElementById("introduction");
     pic.style.display = 'block';
 }
+
 var mp = 0;
 var hp = 0;
 var token = 0;
@@ -38,9 +39,7 @@ function select() {
 function confirm() {
     window.location.href = "page3.html";
 }
-document.cookie = "player_Mp=" + mp + "";
-document.cookie = "player_Hp=" + hp + "";
-document.cookie = "player_Token=" + token;
+
 
 var armor, weapend, def, atk;
 
@@ -80,28 +79,29 @@ weapends[15] = "神之手";
 
 
 function init() {
-    if (pro = "knight") {
+    var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    if (pro == "0") {
         mp = 30;
         hp = 100;
         armor = 1;
         weapend = 1;
     }
-    else if (pro = "ranger") {
+    if (pro == "1") {
         mp = 50;
         hp = 45;
         armor = 6;
         weapend = 6;
     }
-    else if (pro = "magician") {
+    if (pro == "2") {
         mp = 75;
         hp = 50;
         armor = 11;
         weapend = 11;
     }
-    document.cookie = "player_Mp=\"" + mp + "\"";
-    document.cookie = "player_Hp=\"" + hp + "\"";
-    document.cookie = "player_armor=\"" + armor + "\"";
-    document.cookie = "player_weapend=\"" + weapend + "\"";
+    document.cookie = "player_Mp=" + mp + "";
+    document.cookie = "player_Hp=" + hp + "";
+    document.cookie = "player_armor=" + armor + "";
+    document.cookie = "player_weapend=" + weapend + "";
 }
 
 function resetvalue() {
@@ -122,8 +122,9 @@ function begin() {
     if (zy == "2") {
         zy = "法師";
     }
+    init();
+    document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>你目前的能力值如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
 
-    document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>";
 }
 
 var enemyv, eatk, edef;
