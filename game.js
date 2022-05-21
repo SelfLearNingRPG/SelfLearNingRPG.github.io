@@ -77,6 +77,32 @@ weapends[13] = "水龍王";
 weapends[14] = "法王之杖";
 weapends[15] = "神之手";
 
+var enemy = new Array();
+enemy[1] = "老鼠";
+enemy[2] = "蝙蝠";
+enemy[3] = "蜘蛛";
+enemy[4] = "史萊姆";
+enemy[5] = "殭屍";
+enemy[6] = "毒蜘蛛";
+enemy[7] = "骷髏";
+enemy[8] = "哥布林";
+enemy[9] = "地精";
+enemy[10] = "哥布林薩滿";
+enemy[11] = "冤魂";
+enemy[12] = "盔甲兵";
+enemy[13] = "小boss「盔甲騎兵」";
+enemy[14] = "盔甲劍士";
+enemy[15] = "盔甲弓箭手";
+enemy[16] = "墓地黑影";
+enemy[17] = "小惡魔";
+enemy[18] = "石像鬼";
+enemy[19] = "中階惡魔-蓋因";
+enemy[20] = "岩龍";
+enemy[21] = "中階惡魔-布耶爾";
+enemy[22] = "九頭龍";
+enemy[23] = "高階惡魔-阿斯摩太";
+enemy[24] = "魔王-別西卜";
+enemy[25] = "邪龍-尼德霍格";
 
 function init() {
     var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
