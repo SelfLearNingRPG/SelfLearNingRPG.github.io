@@ -17,13 +17,21 @@
         <hr>
         <p id="show_own_side_status" class="ok"></p>
         <hr>
+
     </div>
 
-    <div id="arena">
+    <div id="summon_monster" class="ok" style="display:none;">
+        <input type="button" onclick="summon();" value="召喚怪物" class="botton" />
+        <hr>
+        <p id="show_enemy_details" class="ok"></p>
+        <hr>
+    </div>
+
+    <div id="arena" class="ok" style="display:none;">
         <input type="button" onclick="attack();" value="攻擊" class="botton" />
-        <span id="fight"></span>
         <div id="show_fighting_details" class="ok"></div>
         <hr>
+
         <div id="show_result" class="ok"></div>
     </div>
 

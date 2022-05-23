@@ -15,7 +15,7 @@
 
     <p class="ok">
         準備好開始冒險了嗎？<br>
-        <input type="button" onclick="startgame()" value="準備好了！" class="botton" />
+        <input type="button" onclick="ready()" value="準備好了！" class="botton" />
     </p>
 
     <p id="output1" class="ok"></p>
@@ -24,7 +24,7 @@
         <img src="images/pro_intro.png" width="80%">
 
         <p class="menu">
-            <select id="pro_selsct" class="ok" onchange="select();">
+            <select id="pro_selsct" class="ok" onchange="Pro_Select();">
                 <option value="defult">請選擇你的職業</option>
                 <option value="knight">騎士</option>
                 <option value="ranger">遊俠</option>
@@ -33,7 +33,7 @@
         </p>
 
         <p class="ok">
-            決定好了？<input type="button" onclick="confirm();" value="確定！" class="botton" />
+            決定好了？<input type="button" onclick="Confirm();" value="確定！" class="botton" />
         </p>
 
     </div>
