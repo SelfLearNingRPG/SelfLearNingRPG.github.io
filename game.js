@@ -104,7 +104,29 @@ enemy[23] = "高階惡魔-阿斯摩太";//e23
 enemy[24] = "魔王-別西卜";//e24
 enemy[25] = "邪龍-尼德霍格";//e25
 
+class armorinfo {
 
+    constructor(def) {
+        this.def = def;
+    }
+
+    Get_Armor_info() {
+        return `${this.def}`;
+    }
+
+}
+
+class wapendinfo {
+
+    constructor(atk) {
+        this.atk = atk;
+    }
+
+    Get_Wapend_info() {
+        return `${this.atk}`;
+    }
+
+}
 
 class enemyinfo {
 
@@ -116,34 +138,68 @@ class enemyinfo {
     Get_Enemy_info() {
         return `${this.eatk} ${this.edef}`;
     }
-
 }
 
-e1 = new enemyinfo()
-e2 = new enemyinfo()
-e3 = new enemyinfo()
-e4 = new enemyinfo()
-e5 = new enemyinfo()
-e6 = new enemyinfo()
-e7 = new enemyinfo()
-e8 = new enemyinfo()
-e9 = new enemyinfo()
-e10 = new enemyinfo()
-e11 = new enemyinfo()
-e12 = new enemyinfo()
-e13 = new enemyinfo()
-e14 = new enemyinfo()
-e15 = new enemyinfo()
-e16 = new enemyinfo()
-e17 = new enemyinfo()
-e18 = new enemyinfo()
-e19 = new enemyinfo()
-e20 = new enemyinfo()
-e21 = new enemyinfo()
-e22 = new enemyinfo()
-e23 = new enemyinfo()
-e24 = new enemyinfo()
-e25 = new enemyinfo()
+var a = new Array();//armor
+a[1] = new armorinfo(100);
+a[2] = new armorinfo();
+a[3] = new armorinfo();
+a[4] = new armorinfo();
+a[5] = new armorinfo();
+a[6] = new armorinfo();
+a[7] = new armorinfo();
+a[8] = new armorinfo();
+a[9] = new armorinfo();
+a[10] = new armorinfo();
+a[11] = new armorinfo();
+a[12] = new armorinfo();
+a[13] = new armorinfo();
+a[14] = new armorinfo();
+a[15] = new armorinfo();
+
+var w = new Array();//wapend
+w[1] = new wapendinfo(2000);
+w[2] = new wapendinfo();
+w[3] = new wapendinfo();
+w[4] = new wapendinfo();
+w[5] = new wapendinfo();
+w[6] = new wapendinfo();
+w[7] = new wapendinfo();
+w[8] = new wapendinfo();
+w[9] = new wapendinfo();
+w[10] = new wapendinfo();
+w[11] = new wapendinfo();
+w[12] = new wapendinfo();
+w[13] = new wapendinfo();
+w[14] = new wapendinfo();
+w[15] = new wapendinfo();
+
+var e = new Array();
+e[1] = new enemyinfo(10, 20);
+e[2] = new enemyinfo();
+e[3] = new enemyinfo();
+e[4] = new enemyinfo();
+e[5] = new enemyinfo();
+e[6] = new enemyinfo();
+e[7] = new enemyinfo();
+e[8] = new enemyinfo();
+e[9] = new enemyinfo();
+e[10] = new enemyinfo();
+e[11] = new enemyinfo();
+e[12] = new enemyinfo();
+e[13] = new enemyinfo();
+e[14] = new enemyinfo();
+e[15] = new enemyinfo();
+e[16] = new enemyinfo();
+e[17] = new enemyinfo();
+e[18] = new enemyinfo();
+e[19] = new enemyinfo();
+e[20] = new enemyinfo();
+e[21] = new enemyinfo();
+e[22] = new enemyinfo();
+e[23] = new enemyinfo();
+e[24] = new enemyinfo();
+e[25] = new enemyinfo();
 
 
 function init() {
@@ -172,15 +228,11 @@ function init() {
     document.cookie = "player_weapend=" + weapend + "";
 }
 
-function resetvalue() {
-
-}
-
 var stage = 1;
+document.cookie = "stage=" + stage;
 
 function begin() {
     var zy = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
     if (zy == "0") {
         zy = "騎士";
     }
@@ -192,12 +244,8 @@ function begin() {
     }
     init();
     var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個" + zy + "<br>你目前的腳色資訊如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
-    document.getElementById('show_enemy_status').innerHTML = "你的對手是 : " + enemy[stage];
+    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個" + zy + "<br>你目前的腳色資訊如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "(防禦力+" + a[armor].Get_Armor_info() + ")" + "<br>武器 : " + weapends[weapend] + "(攻擊力+" + w[weapend].Get_Wapend_info() + ")";
 }
-
-
-
 
 function fight(eatk, edef, atk, def) {
     var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
@@ -230,9 +278,62 @@ function fight(eatk, edef, atk, def) {
 function show_current_status() {
     var mp = document.cookie.replace(/(?:(?:^|.*;\s*)player_Mp\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     var hp = document.cookie.replace(/(?:(?:^|.*;\s*)player_Hp\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    var stage = Number(document.cookie.replace(/(?:(?:^|.*;\s*)stage\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+    switch (stage) {
+        case 1:
+            var opponent = new Array();
+            opponent[1] = e[1];
+            opponent[2] = e[2];
+            opponent[3] = e[3];
+            break;
+        case 2:
+            var opponent = new Array();
+            opponent[1] = e[4];
+            opponent[2] = e[5];
+            opponent[3] = e[6];
+        case 3:
+            var opponent = new Array();
+            opponent[1] = e[7];
+            opponent[2] = e[8];
+        case 4:
+            var opponent = new Array();
+            opponent[1] = e[9];
+            opponent[2] = e[10];
+        case 5:
+            var opponent = new Array();
+            opponent[1] = e[11];
+            opponent[2] = e[12];
+        case 6://小boss
+            var opponent = new Array();
+            opponent[1] = e[13];
+        case 7://其實是第六層
+            var opponent = new Array();
+            opponent[1] = e[14];
+            opponent[2] = e[15];
+        case 8:
+            var opponent = new Array();
+            opponent[1] = e[16];
+            opponent[2] = e[17];
+        case 9:
+            var opponent = new Array();
+            opponent[1] = e[18];
+            opponent[2] = e[19];
+        case 10:
+            var opponent = new Array();
+            opponent[1] = e[20];
+            opponent[2] = e[21];
+        case 11:
+            var opponent = new Array();
+            opponent[1] = e[22];
+            opponent[2] = e[23];
+        case 12:
+            var opponent = new Array();
+            opponent[1] = e[24];
+            opponent[2] = e[25];
+    }
     document.getElementById('status').innerHTML = "你目前的能力值如下: <br>MP : " + mp + "<br>HP : " + hp;
 }
 
 function attack() {
-    document.getElementById('arena').innerHTML = e1.Get_Enemy_info();
+    document.getElementById('show_fighting_details').innerHTML = e[1].Get_Enemy_info();
 }
