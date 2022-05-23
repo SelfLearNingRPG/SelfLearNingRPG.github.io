@@ -41,7 +41,7 @@ function confirm() {
 }
 
 
-var armor, weapend, def, atk;
+var armor, weapend, def, atk, avoid;
 
 var armors = new Array();
 armors[1] = "鐵甲";
@@ -83,13 +83,13 @@ enemy[2] = "蝙蝠";//e2
 enemy[3] = "蜘蛛";//e3
 enemy[4] = "史萊姆";//e4
 enemy[5] = "殭屍";//e5
-enemy[6] = "毒蜘蛛";//e6
+enemy[6] = "巨狼蛛";//e6
 enemy[7] = "骷髏";//e7
 enemy[8] = "哥布林";//e8
-enemy[9] = "地精";//e9
+enemy[9] = "魔像";//e9
 enemy[10] = "哥布林薩滿";//e10
 enemy[11] = "冤魂";//e11
-enemy[12] = "盔甲兵";//e12
+enemy[12] = "盔甲小兵";//e12
 enemy[13] = "小boss「盔甲騎兵」";//e13
 enemy[14] = "盔甲劍士";//e14
 enemy[15] = "盔甲弓箭手";//e15
@@ -112,6 +112,18 @@ class armorinfo {
 
     Get_Armor_info() {
         return `${this.def}`;
+    }
+
+}
+
+class avoidinfo {
+
+    constructor(avoid) {
+        this.def = avoid;
+    }
+
+    Get_Avoid_info() {
+        return `${this.avoid}`;
     }
 
 }
@@ -141,65 +153,82 @@ class enemyinfo {
 }
 
 var a = new Array();//armor
-a[1] = new armorinfo(100);
-a[2] = new armorinfo();
-a[3] = new armorinfo();
-a[4] = new armorinfo();
-a[5] = new armorinfo();
-a[6] = new armorinfo();
-a[7] = new armorinfo();
-a[8] = new armorinfo();
-a[9] = new armorinfo();
-a[10] = new armorinfo();
-a[11] = new armorinfo();
-a[12] = new armorinfo();
-a[13] = new armorinfo();
-a[14] = new armorinfo();
-a[15] = new armorinfo();
+a[1] = new armorinfo(5);
+a[2] = new armorinfo(24);
+a[3] = new armorinfo(65);
+a[4] = new armorinfo(88);
+a[5] = new armorinfo(110, 25);
+a[6] = new armorinfo(1, 50);
+a[7] = new armorinfo(17, 60);
+a[8] = new armorinfo(40, 70);
+a[9] = new armorinfo(67, 80);
+a[10] = new armorinfo(80, 90);
+a[11] = new armorinfo(7, 20);
+a[12] = new armorinfo(23, 25);
+a[13] = new armorinfo(57, 30);
+a[14] = new armorinfo(80, 35);
+a[15] = new armorinfo(100, 40);
+
+var av = new Array();//avoid
+av[1] = new armorinfo(0);
+av[2] = new armorinfo(0);
+av[3] = new armorinfo(0);
+av[4] = new armorinfo(10);
+av[5] = new armorinfo(25);
+av[6] = new armorinfo(50);
+av[7] = new armorinfo(60);
+av[8] = new armorinfo(70);
+av[9] = new armorinfo(80);
+av[10] = new armorinfo(90);
+av[11] = new armorinfo(20);
+av[12] = new armorinfo(25);
+av[13] = new armorinfo(30);
+av[14] = new armorinfo(35);
+av[15] = new armorinfo(40);
 
 var w = new Array();//wapend
-w[1] = new wapendinfo(2000);
-w[2] = new wapendinfo();
-w[3] = new wapendinfo();
-w[4] = new wapendinfo();
-w[5] = new wapendinfo();
-w[6] = new wapendinfo();
-w[7] = new wapendinfo();
-w[8] = new wapendinfo();
-w[9] = new wapendinfo();
-w[10] = new wapendinfo();
-w[11] = new wapendinfo();
-w[12] = new wapendinfo();
-w[13] = new wapendinfo();
-w[14] = new wapendinfo();
-w[15] = new wapendinfo();
+w[1] = new wapendinfo(10);
+w[2] = new wapendinfo(27);
+w[3] = new wapendinfo(40);
+w[4] = new wapendinfo(66);
+w[5] = new wapendinfo(85);
+w[6] = new wapendinfo(13);
+w[7] = new wapendinfo(35);
+w[8] = new wapendinfo(60);
+w[9] = new wapendinfo(84);
+w[10] = new wapendinfo(100);
+w[11] = new wapendinfo(11);
+w[12] = new wapendinfo(33);
+w[13] = new wapendinfo(50);
+w[14] = new wapendinfo(72);
+w[15] = new wapendinfo(90);
 
 var e = new Array();
-e[1] = new enemyinfo(10, 20);
-e[2] = new enemyinfo();
-e[3] = new enemyinfo();
-e[4] = new enemyinfo();
-e[5] = new enemyinfo();
-e[6] = new enemyinfo();
-e[7] = new enemyinfo();
-e[8] = new enemyinfo();
-e[9] = new enemyinfo();
-e[10] = new enemyinfo();
-e[11] = new enemyinfo();
-e[12] = new enemyinfo();
-e[13] = new enemyinfo();
-e[14] = new enemyinfo();
-e[15] = new enemyinfo();
-e[16] = new enemyinfo();
-e[17] = new enemyinfo();
-e[18] = new enemyinfo();
-e[19] = new enemyinfo();
-e[20] = new enemyinfo();
-e[21] = new enemyinfo();
-e[22] = new enemyinfo();
-e[23] = new enemyinfo();
-e[24] = new enemyinfo();
-e[25] = new enemyinfo();
+e[1] = new enemyinfo(3, 5);
+e[2] = new enemyinfo(5, 3);
+e[3] = new enemyinfo(4, 4);
+e[4] = new enemyinfo(5, 9);
+e[5] = new enemyinfo(6, 8);
+e[6] = new enemyinfo(8, 6);
+e[7] = new enemyinfo(10, 12);
+e[8] = new enemyinfo(12, 10);
+e[9] = new enemyinfo(8,  14);
+e[10] = new enemyinfo(15, 15);
+e[11] = new enemyinfo(24, 6);
+e[12] = new enemyinfo(25, 25);
+e[13] = new enemyinfo(30, 35);
+e[14] = new enemyinfo(25, 30);
+e[15] = new enemyinfo(35, 25);
+e[16] = new enemyinfo(43, 37);
+e[17] = new enemyinfo(40, 40);
+e[18] = new enemyinfo(32, 48);
+e[19] = new enemyinfo(50, 40);
+e[20] = new enemyinfo(60, 60);
+e[21] = new enemyinfo(58, 62);
+e[22] = new enemyinfo(60, 100);
+e[23] = new enemyinfo(80, 80);
+e[24] = new enemyinfo(120, 80);
+e[25] = new enemyinfo(80, 150);
 
 
 function init() {
@@ -250,7 +279,7 @@ function begin() {
 function fight(eatk, edef, atk, def) {
     var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
     if (def * 1.8 > atk) {
-        if (def * 2 + atk >= enemyv) {
+        if (def * 1.3 + atk * 0.3 >= enemyv) {
             return true;
         }
         else {
@@ -258,7 +287,7 @@ function fight(eatk, edef, atk, def) {
         }
     }
     if (def * 1.8 == atk) {
-        if (def * 1.5 + atk * 1.5 >= enemyv) {
+        if (def * 1.1 + atk * 1.1 >= enemyv) {
             return true;
         }
         else {
@@ -266,10 +295,148 @@ function fight(eatk, edef, atk, def) {
         }
     }
     if (def * 1.8 < atk) {
-        if (def + atk * 2 >= enemyv) {
+        if (def * 0.3 + atk * 1.3 >= enemyv) {
             return true;
         }
         else {
+            return false;
+        }
+    }
+}
+
+function damage(edef, atk){
+    edef = edef - atk;
+}
+
+function defense(eatk, def, hp){
+    if (eatk <= def){
+        hp = hp - 1;
+    }
+    if (eatk > def){
+        hp = hp + def - eatk;
+    }
+}
+
+function magicattack(){
+    mp = mp - 10;
+    edef = edef - 50;
+}
+
+function magicrecover(){
+    mp = mp - 25;
+    hp = hp + 50
+} 
+
+function enemyRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;//max,min為那一層怪物的最大最小編碼
+}
+
+function evade(){
+    if (armor == 4){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=10){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 5){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=25){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 6){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=50){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 7){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=60){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 8){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=70){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 9){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=80){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 10){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=90){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 11){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=20){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 12){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=25){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 13){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=30){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 14){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=35){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if (armor == 15){
+        var avoidv = Math.round(Math.random()*100);
+        if (avoidv <=40){
+            return true;
+        }
+        else{
             return false;
         }
     }
