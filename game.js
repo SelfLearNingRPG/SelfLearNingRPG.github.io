@@ -78,31 +78,73 @@ weapends[14] = "法王之杖";
 weapends[15] = "神之手";
 
 var enemy = new Array();
-enemy[1] = "老鼠";
-enemy[2] = "蝙蝠";
-enemy[3] = "蜘蛛";
-enemy[4] = "史萊姆";
-enemy[5] = "殭屍";
-enemy[6] = "毒蜘蛛";
-enemy[7] = "骷髏";
-enemy[8] = "哥布林";
-enemy[9] = "地精";
-enemy[10] = "哥布林薩滿";
-enemy[11] = "冤魂";
-enemy[12] = "盔甲兵";
-enemy[13] = "小boss「盔甲騎兵」";
-enemy[14] = "盔甲劍士";
-enemy[15] = "盔甲弓箭手";
-enemy[16] = "墓地黑影";
-enemy[17] = "小惡魔";
-enemy[18] = "石像鬼";
-enemy[19] = "中階惡魔-蓋因";
-enemy[20] = "岩龍";
-enemy[21] = "中階惡魔-布耶爾";
-enemy[22] = "九頭龍";
-enemy[23] = "高階惡魔-阿斯摩太";
-enemy[24] = "魔王-別西卜";
-enemy[25] = "邪龍-尼德霍格";
+enemy[1] = "老鼠";//e1
+enemy[2] = "蝙蝠";//e2
+enemy[3] = "蜘蛛";//e3
+enemy[4] = "史萊姆";//e4
+enemy[5] = "殭屍";//e5
+enemy[6] = "毒蜘蛛";//e6
+enemy[7] = "骷髏";//e7
+enemy[8] = "哥布林";//e8
+enemy[9] = "地精";//e9
+enemy[10] = "哥布林薩滿";//e10
+enemy[11] = "冤魂";//e11
+enemy[12] = "盔甲兵";//e12
+enemy[13] = "小boss「盔甲騎兵」";//e13
+enemy[14] = "盔甲劍士";//e14
+enemy[15] = "盔甲弓箭手";//e15
+enemy[16] = "墓地黑影";//e16
+enemy[17] = "小惡魔";//e17
+enemy[18] = "石像鬼";//e18
+enemy[19] = "中階惡魔-蓋因";//e19
+enemy[20] = "岩龍";//e20
+enemy[21] = "中階惡魔-布耶爾";//e21
+enemy[22] = "九頭龍";//e22
+enemy[23] = "高階惡魔-阿斯摩太";//e23
+enemy[24] = "魔王-別西卜";//e24
+enemy[25] = "邪龍-尼德霍格";//e25
+
+
+
+class enemyinfo {
+
+    constructor(eatk, edef) {
+        this.eatk = eatk;
+        this.edef = edef;
+    }
+
+    Get_Enemy_info() {
+        return `${this.eatk} ${this.edef}`;
+    }
+
+}
+
+e1 = new enemyinfo()
+e2 = new enemyinfo()
+e3 = new enemyinfo()
+e4 = new enemyinfo()
+e5 = new enemyinfo()
+e6 = new enemyinfo()
+e7 = new enemyinfo()
+e8 = new enemyinfo()
+e9 = new enemyinfo()
+e10 = new enemyinfo()
+e11 = new enemyinfo()
+e12 = new enemyinfo()
+e13 = new enemyinfo()
+e14 = new enemyinfo()
+e15 = new enemyinfo()
+e16 = new enemyinfo()
+e17 = new enemyinfo()
+e18 = new enemyinfo()
+e19 = new enemyinfo()
+e20 = new enemyinfo()
+e21 = new enemyinfo()
+e22 = new enemyinfo()
+e23 = new enemyinfo()
+e24 = new enemyinfo()
+e25 = new enemyinfo()
+
 
 function init() {
     var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -154,11 +196,11 @@ function begin() {
     document.getElementById('show_enemy_status').innerHTML = "你的對手是 : " + enemy[stage];
 }
 
-var enemyv, eatk, edef;
 
 
-function fight() {
-    enemyv = Math.sqrt(eatk * eatk + edef * edef)
+
+function fight(eatk, edef, atk, def) {
+    var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
     if (def * 1.8 > atk) {
         if (def * 2 + atk >= enemyv) {
             return true;
@@ -192,5 +234,5 @@ function show_current_status() {
 }
 
 function attack() {
-    document.getElementById('show_fighting_details').innerHTML = "顯示戰鬥細節";
+    document.getElementById('arena').innerHTML = e1.Get_Enemy_info();
 }
