@@ -149,7 +149,8 @@ function begin() {
         zy = "法師";
     }
     init();
-    document.getElementById('begin').innerHTML = "你是一個" + zy + "<br>你目前的能力值如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
+    document.getElementById('show_own_side_status').innerHTML = "你是一個" + zy + "<br>你目前的能力值如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
+    document.getElementById('show_enemy_status').innerHTML = "你的對手是 : ";
 }
 
 var enemyv, eatk, edef;
@@ -187,4 +188,8 @@ function show_current_status() {
     var mp = document.cookie.replace(/(?:(?:^|.*;\s*)player_Mp\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     var hp = document.cookie.replace(/(?:(?:^|.*;\s*)player_Hp\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     document.getElementById('status').innerHTML = "你目前的能力值如下: <br>MP : " + mp + "<br>HP : " + hp;
+}
+
+function attack() {
+    document.getElementById('show_fighting_details').innerHTML = "顯示戰鬥細節";
 }

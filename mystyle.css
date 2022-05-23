@@ -14,6 +14,12 @@
     color: rgb(3, 3, 1);
 }
 
+.botton {
+    width: 250px;
+    height: 50px;
+    font-size: xx-large;
+}
+
 #intro {
     @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
     font-family: 'Noto Sans TC' !important;
@@ -28,4 +34,12 @@
     font-size: xx-large;
     text-align: center;
     color: rgb(238, 12, 12);
+}
+
+#arena {
+    @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+    font-family: 'Noto Sans TC' !important;
+    font-size: xx-large;
+    text-align: center;
+    color: rgb(3, 3, 1);
 }
