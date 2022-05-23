@@ -250,7 +250,7 @@ function defense(obj, pdef) {
         player_hp = player_hp - 1;
     }
     if (obj.eatk > pdef) {
-        player_hp = player_hp + def - obj.eatk;
+        player_hp = player_hp + pdef - obj.eatk;
     }
 }
 
@@ -442,13 +442,15 @@ function attack() {
     if (fight(enemy.eatk, enemy.edef, player_atk, player_def)) {
         window.alert("攻擊成功!!")
         damage(enemy, player_atk);
+        document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
         if (enemy.edef <= 0) {
             window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
         }
     }
     else {
         window.alert("攻擊失敗!!");
-        defense(enemy.eatk, player_def, player_hp);
+        defense(enemy, player_def);
+        document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
     }
-    document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
+
 }
