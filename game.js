@@ -1,4 +1,4 @@
-var player_Id = '', player_atk = 0, player_def = 0, player_avoid = 0;
+var player_Id = '', player_atk = 0, player_def = 0, player_avoid = 0, player_mp = 0, player_hp = 0;
 
 function Agree() {
     player_Id = prompt("取個名字：", "大中天");
@@ -33,9 +33,7 @@ function Confirm() {
     window.location.href = "page3.html";
 }
 
-var mp = 0;
-var hp = 0;
-var token = 0;
+
 
 var armor, weapend, def, atk, avoid;
 
@@ -163,28 +161,28 @@ e[25] = new enemyinfo("邪龍-尼德霍格", 80, 150);
 function init() {
     var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     if (pro == "0") {
-        mp = 30;
-        hp = 100;
+        player_mp = 30;
+        player_hp = 100;
         armor = 1;
         weapend = 1;
     }
     if (pro == "1") {
-        mp = 50;
-        hp = 45;
+        player_mp = 50;
+        player_hp = 45;
         armor = 6;
         weapend = 6;
     }
     if (pro == "2") {
-        mp = 75;
-        hp = 50;
+        player_mp = 75;
+        player_hp = 50;
         armor = 11;
         weapend = 11;
     }
     player_atk += w[weapend].Get_Wapend_atk();
     player_def += a[armor].Get_Armor_def();
     player_avoid += a[armor].Get_Armor_avoid();
-    document.cookie = "player_Mp=" + mp + "";
-    document.cookie = "player_Hp=" + hp + "";
+    document.cookie = "player_Mp=" + player_mp + "";
+    document.cookie = "player_Hp=" + player_hp + "";
     document.cookie = "player_armor=" + armor + "";
     document.cookie = "player_weapend=" + weapend + "";
     document.cookie = "player_atk=" + player_atk + "";
@@ -208,7 +206,7 @@ function begin() {
     }
     init();
     var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + mp + "<br>HP : " + hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("summon_monster").style.display = 'block';
 }
 
@@ -242,17 +240,17 @@ function fight(eatk, edef, patk, pdef) {
 }
 
 //傷害
-function damage(edef, patk) {
-    edef = edef - patk;
+function damage(obj, patk) {
+    obj.edef = obj.edef - patk;
 }
 
 //防禦
-function defense(eatk, pdef, hp) {
-    if (eatk <= pdef) {
-        hp = hp - 1;
+function defense(obj, pdef) {
+    if (obj.eatk <= pdef) {
+        player_hp = player_hp - 1;
     }
-    if (eatk > pdef) {
-        hp = hp + def - eatk;
+    if (obj.eatk > pdef) {
+        player_hp = player_hp + def - obj.eatk;
     }
 }
 
@@ -386,13 +384,12 @@ function evade() {
 }
 
 function show_current_status() {
-    var mp = document.cookie.replace(/(?:(?:^|.*;\s*)player_Mp\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    var hp = document.cookie.replace(/(?:(?:^|.*;\s*)player_Hp\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    document.getElementById('status').innerHTML = "你目前的能力值如下: <br>MP : " + mp + "<br>HP : " + hp;
+    document.getElementById('status').innerHTML = "你目前的能力值如下: <br>MP : " + player_mp + "<br>HP : " + player_hp;
 }
 
+var monster;
+
 function summon() {
-    var monster;
     var stage = Number(document.cookie.replace(/(?:(?:^|.*;\s*)stage\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
     switch (stage) {
         case 1:
@@ -437,5 +434,21 @@ function summon() {
 }
 
 function attack() {
-    document.getElementById('show_fighting_details').innerHTML = "";
+    var enemy = {
+        edef: monster.Get_Enemy_def(),
+        eatk: monster.Get_Enemy_atk()
+    }
+
+    if (fight(enemy.eatk, enemy.edef, player_atk, player_def)) {
+        window.alert("攻擊成功!!")
+        damage(enemy, player_atk);
+        if (enemy.edef <= 0) {
+            window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
+        }
+    }
+    else {
+        window.alert("攻擊失敗!!");
+        defense(enemy.eatk, player_def, player_hp);
+    }
+    document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
 }
