@@ -134,7 +134,7 @@ function resetvalue() {
 
 }
 
-
+var stage = 1;
 
 function begin() {
     var zy = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -149,8 +149,9 @@ function begin() {
         zy = "法師";
     }
     init();
-    document.getElementById('show_own_side_status').innerHTML = "你是一個" + zy + "<br>你目前的能力值如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
-    document.getElementById('show_enemy_status').innerHTML = "你的對手是 : ";
+    var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個" + zy + "<br>你目前的腳色資訊如下:<br>MP : " + mp + "<br>HP : " + hp + "<br>防具 : " + armors[armor] + "<br>武器 : " + weapends[weapend];
+    document.getElementById('show_enemy_status').innerHTML = "你的對手是 : " + enemy[stage];
 }
 
 var enemyv, eatk, edef;
