@@ -12,14 +12,17 @@
 <body>
     <!-- script -->
     <script src="game.js"></script>
+
     <p class="ok">
         準備好開始冒險了嗎？<br>
         <input type="button" onclick="startgame()" value="準備好了！" class="botton" />
     </p>
 
     <p id="output1" class="ok"></p>
+
     <div class="ok" style="display:none;" id="introduction">
         <img src="images/pro_intro.png" width="80%">
+
         <p class="menu">
             <select id="pro_selsct" class="ok" onchange="select();">
                 <option value="defult">請選擇你的職業</option>
@@ -28,9 +31,11 @@
                 <option value="magician">法師</option>
             </select>
         </p>
+
         <p class="ok">
             決定好了？<input type="button" onclick="confirm();" value="確定！" class="botton" />
         </p>
+
     </div>
 
 </body>
