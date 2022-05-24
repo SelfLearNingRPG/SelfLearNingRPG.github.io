@@ -44,7 +44,7 @@ function Confirm() {
 
 
 
-var armor, weapend, def, atk, avoid;
+var armor, weapend, def, atk, avoid, hpbottle, mpbottle;
 
 class armorinfo {
 
@@ -174,18 +174,24 @@ function init() {
         player_hp = 100;
         armor = 1;
         weapend = 1;
+        hpbottle = 2;
+        mpbottle = 0;
     }
     if (pro == "1") {
         player_mp = 50;
         player_hp = 45;
         armor = 6;
         weapend = 6;
+        hpbottle = 1;
+        mpbottle = 0;
     }
     if (pro == "2") {
         player_mp = 75;
         player_hp = 50;
         armor = 11;
         weapend = 11;
+        hpbottle = 0;
+        mpbottle = 1;
     }
     player_atk += w[weapend].Get_Wapend_atk();
     player_def += a[armor].Get_Armor_def();
@@ -301,6 +307,22 @@ function magicattack(mp, edef) {
 function magicrecover() {
     mp = mp - 25;
     hp = hp + 50
+}
+
+//回復血量瓶
+function recoverhp(){
+    if (hpbottle > 0){
+        hpbottle = hpbottle - 1;
+        hp = hp + 50;
+    }
+}
+
+//回復魔力瓶
+function recovermp(){
+    if (mpbottle > 0){
+        mpbottle = mpbottle - 1;
+        mp = mp + 50;
+    }
 }
 
 //隨機召喚怪物
