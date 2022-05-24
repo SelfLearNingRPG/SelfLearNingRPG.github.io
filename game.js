@@ -6,8 +6,17 @@ function Agree() {
     window.location.href = "page2.html";
 }
 
+function GetCookie(name) {
+    let cookie = {};
+    document.cookie.split(';').forEach(function (el) {
+        let [k, v] = el.split('=');
+        cookie[k.trim()] = v;
+    })
+    return cookie[name];
+}
+
 function ready() {
-    player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    player_Id = GetCookie("player_Id");
     document.getElementById('output1').innerHTML = "這裡是你旅途的起點....<br>???：<br>你好，" + player_Id + "，恭候多時，我是作者大人的其中一部分，你的請求我已經收到了。<br>現在就將刻有「" + player_Id + "」的地下城鑰匙交給你....<br>雖然我本來想這麼說，但在此之前，你還沒有任何能力，這樣就想挑戰地下城簡直是白白送死，<br>先去選個職業，然後踏上變強的道路吧!<br>等時機成熟，我會再次顯現在你面前<br>祝你一切順利。<br> ";
     var pic = document.getElementById("introduction");
     pic.style.display = 'block';
@@ -207,6 +216,22 @@ function begin() {
     init();
     var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+}
+
+function achieve() {
+    window.location.href = "stages.html";
+}
+
+function show_current_status() {
+    player_Id = GetCookie("player_Id");
+    player_mp = GetCookie("player_Mp");
+    player_hp = GetCookie("player_Hp");
+    armor = GetCookie("player_armor");
+    weapend = GetCookie("player_weapend");
+    player_atk = GetCookie("player_atk");
+    player_def = GetCookie("player_def");
+    player_avoid = GetCookie("player_avoid");
+    document.getElementById("show_status").innerHTML = player_Id + "，你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("summon_monster").style.display = 'block';
 }
 
@@ -216,10 +241,10 @@ function fight(eatk, edef, patk, pdef) {
     var r1 = Math.round(Math.random(1.3) + 0.3);
     var r2 = 1.6 - r1;
     var r3 = (r1 + r2) / 2;
-    if(r2 >= r1){
+    if (r2 >= r1) {
         r1 = r1 ^ r2;
         r2 = r1 ^ r2;
-        R1 = r1 ^ r2;
+        r1 = r1 ^ r2;
     }
     if (pdef * 1.8 > patk) {
         if (pdef * r1 + patk * r2 >= enemyv) {
@@ -230,7 +255,7 @@ function fight(eatk, edef, patk, pdef) {
         }
     }
     if (pdef * 1.8 == patk) {
-        if (pdef * r3 + patk *r3 >= enemyv) {
+        if (pdef * r3 + patk * r3 >= enemyv) {
             return true;
         }
         else {
@@ -391,10 +416,6 @@ function evade() {
     }
 }
 
-function show_current_status() {
-    document.getElementById('status').innerHTML = "你目前的能力值如下: <br>MP : " + player_mp + "<br>HP : " + player_hp;
-}
-
 var monster;
 
 function summon() {
@@ -439,6 +460,7 @@ function summon() {
     }
     document.getElementById('show_enemy_details').innerHTML = "敵方資訊 : <br>" + monster.Get_Enemy_name() + "<br>攻擊力 : " + monster.Get_Enemy_atk() + "<br>防禦力 : " + monster.Get_Enemy_def();
     document.getElementById("arena").style.display = 'block';
+    document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + monster.Get_Enemy_def();
 }
 
 function attack() {
@@ -462,3 +484,4 @@ function attack() {
     }
 
 }
+

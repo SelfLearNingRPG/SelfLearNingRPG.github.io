@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊戲開始</title>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+
+<body>
+    <script src="game.js"></script>
+
+    <div class="ok">
+        <input type="button" onclick="show_current_status();" value="開始攻略" class="botton" />
+        <hr>
+        <p id="show_status" class="ok"></p>
+        <hr>
+
+    </div>
+
+    <div id="summon_monster" class="ok" style="display:none;">
+        <hr>
+        第一層
+        <hr>
+        <input type="button" onclick="summon();" value="召喚怪物" class="botton" />
+        <hr>
+        <p id="show_enemy_details" class="ok"></p>
+        <hr>
+    </div>
+
+    <div id="arena" class="ok" style="display:none;">
+        <input type="button" onclick="attack();" value="攻擊" class="botton" />
+        <br>
+        <div id="show_fighting_details" class="ok">
+        </div>
+        <hr>
+        <div id="show_result" class="ok"></div>
+    </div>
+
+</body>
+
+</html>
