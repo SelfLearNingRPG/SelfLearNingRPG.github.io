@@ -475,6 +475,7 @@ function attack() {
         document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
         if (enemy.edef <= 0) {
             window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
+            window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰")
         }
     }
     else {
@@ -482,6 +483,5 @@ function attack() {
         defense(enemy, player_def);
         document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
     }
-
 }
 
