@@ -287,7 +287,7 @@ function defense(obj, pdef) {
         player_hp = player_hp - 1;
     }
     if (obj.eatk > pdef) {
-        player_hp = player_hp + pdef - obj.eatk;
+        player_hp = Number(player_hp) + (pdef - obj.eatk);
     }
 }
 
