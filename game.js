@@ -200,7 +200,6 @@ function init() {
 }
 
 var stage = 1;
-document.cookie = "stage=" + stage;
 
 function begin() {
     var zy = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -218,6 +217,7 @@ function begin() {
     document.getElementById("show_own_side_status").style.display = 'block';
     document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("show_begin_botton").style.display = 'block';
+    document.cookie = "stage=" + stage;
 }
 
 function achieve() {
@@ -497,12 +497,12 @@ function attack() {
 }
 
 function finished1() {
-    stage = GetCookie("stage");
+    stage = Number(GetCookie("stage"));
     if (check) {
         window.alert("正在確認通關資格...通過!!!前往下一層吧!!!");
         stage = stage + 1;
         document.cookie = "stage=" + stage;
-
+        location.reload();
     }
     else {
         window.alert("擊敗五隻怪物才能繼續前進唷")
