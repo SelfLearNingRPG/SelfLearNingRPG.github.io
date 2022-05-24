@@ -497,11 +497,12 @@ function attack() {
 }
 
 function finished1() {
+    stage = GetCookie("stage");
     if (check) {
         window.alert("正在確認通關資格...通過!!!前往下一層吧!!!");
         stage = stage + 1;
         document.cookie = "stage=" + stage;
-        location.reload();
+
     }
     else {
         window.alert("擊敗五隻怪物才能繼續前進唷")
