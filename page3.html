@@ -15,9 +15,11 @@
     <div class="ok">
         <input type="button" onclick="begin();" value="開始遊戲" class="botton" />
         <hr>
-        <p id="show_own_side_status" class="ok"></p>
+        <p id="show_own_side_status" class="ok" style="display: none;"></p>
         <hr>
-        <input type="button" onclick="achieve();" value="進入第一層" class="botton" />
+        <div id="show_begin_botton" style="display: none;">
+            <input type="button" onclick="achieve();" value="進入第一層" class="botton" />
+        </div>
     </div>
 </body>
 

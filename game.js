@@ -215,7 +215,9 @@ function begin() {
     }
     init();
     var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    document.getElementById("show_own_side_status").style.display = 'block';
     document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    document.getElementById("show_begin_botton").style.display = 'block';
 }
 
 function achieve() {
@@ -231,7 +233,9 @@ function show_current_status() {
     player_atk = GetCookie("player_atk");
     player_def = GetCookie("player_def");
     player_avoid = GetCookie("player_avoid");
+    stage = GetCookie("stage")
     document.getElementById("show_status").innerHTML = player_Id + "，你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    document.getElementById("show_stage").innerHTML = "所在層數 : " + stage;
     document.getElementById("summon_monster").style.display = 'block';
 }
 
@@ -463,7 +467,10 @@ function summon() {
     document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + monster.Get_Enemy_def();
 }
 
+var check = false;
+var cnt = 0;
 function attack() {
+    check = false;
     var enemy = {
         edef: monster.Get_Enemy_def(),
         eatk: monster.Get_Enemy_atk()
@@ -476,6 +483,7 @@ function attack() {
         if (enemy.edef <= 0) {
             window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
             window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰")
+            cnt++;
         }
     }
     else {
@@ -483,5 +491,19 @@ function attack() {
         defense(enemy, player_def);
         document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
     }
+    if (cnt >= 5) {
+        check = true;
+    }
 }
 
+function finished1() {
+    if (check) {
+        window.alert("正在確認通關資格...通過!!!前往下一層吧!!!");
+        stage = stage + 1;
+        document.cookie = "stage=" + stage;
+        location.reload();
+    }
+    else {
+        window.alert("擊敗五隻怪物才能繼續前進唷")
+    }
+}
