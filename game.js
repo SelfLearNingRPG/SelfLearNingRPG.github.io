@@ -213,8 +213,16 @@ function begin() {
 //攻擊成功與否
 function fight(eatk, edef, patk, pdef) {
     var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
+    var r1 = Math.round(Math.random(1.3) + 0.3);
+    var r2 = 1.6 - r1;
+    var r3 = (r1 + r2) / 2;
+    if(r2 >= r1){
+        r1 = r1 ^ r2;
+        r2 = r1 ^ r2;
+        R1 = r1 ^ r2;
+    }
     if (pdef * 1.8 > patk) {
-        if (pdef * 1.3 + patk * 0.3 >= enemyv) {
+        if (pdef * r1 + patk * r2 >= enemyv) {
             return true;
         }
         else {
@@ -222,7 +230,7 @@ function fight(eatk, edef, patk, pdef) {
         }
     }
     if (pdef * 1.8 == patk) {
-        if (pdef * 1.1 + patk * 1.1 >= enemyv) {
+        if (pdef * r3 + patk *r3 >= enemyv) {
             return true;
         }
         else {
@@ -230,7 +238,7 @@ function fight(eatk, edef, patk, pdef) {
         }
     }
     if (pdef * 1.8 < patk) {
-        if (pdef * 0.3 + patk * 1.3 >= enemyv) {
+        if (pdef * r2 + patk * r1 >= enemyv) {
             return true;
         }
         else {
