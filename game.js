@@ -44,7 +44,7 @@ function Confirm() {
 
 
 
-var armor, weapend, def, atk, avoid, hpbottle, mpbottle,money;
+var armor, weapend, def, atk, avoid, hpbottle, mpbottle, money;
 
 class armorinfo {
 
@@ -199,13 +199,16 @@ function init() {
     player_atk += w[weapend].Get_Wapend_atk();
     player_def += a[armor].Get_Armor_def();
     player_avoid += a[armor].Get_Armor_avoid();
-    document.cookie = "player_Mp=" + player_mp + "";
-    document.cookie = "player_Hp=" + player_hp + "";
-    document.cookie = "player_armor=" + armor + "";
-    document.cookie = "player_weapend=" + weapend + "";
-    document.cookie = "player_atk=" + player_atk + "";
-    document.cookie = "player_def=" + player_def + "";
-    document.cookie = "player_avoid=" + player_avoid + "";
+    document.cookie = "player_mp=" + player_mp;
+    document.cookie = "player_hp=" + player_hp;
+    document.cookie = "player_armor=" + armor;
+    document.cookie = "player_weapend=" + weapend;
+    document.cookie = "player_atk=" + player_atk;
+    document.cookie = "player_def=" + player_def;
+    document.cookie = "player_avoid=" + player_avoid;
+    document.cookie = "hpbottle=" + hpbottle;
+    document.cookie = "mpbottle=" + mpbottle;
+    document.cookie = "money=" + money;
 }
 
 var stage = 1;
@@ -224,7 +227,7 @@ function begin() {
     init();
     var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     document.getElementById("show_own_side_status").style.display = 'block';
-    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>金錢數 : " + money + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("show_begin_botton").style.display = 'block';
     document.cookie = "stage=" + stage;
 }
@@ -235,15 +238,16 @@ function achieve() {
 
 function show_current_status() {
     player_Id = GetCookie("player_Id");
-    player_mp = GetCookie("player_Mp");
-    player_hp = GetCookie("player_Hp");
-    armor = GetCookie("player_armor");
-    weapend = GetCookie("player_weapend");
-    player_atk = GetCookie("player_atk");
-    player_def = GetCookie("player_def");
-    player_avoid = GetCookie("player_avoid");
-    stage = GetCookie("stage")
-    document.getElementById("show_status").innerHTML = player_Id + "，你目前的腳色資訊如下:" + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    player_mp = Number(GetCookie("player_mp"));
+    player_hp = Number(GetCookie("player_hp"));
+    armor = Number(GetCookie("player_armor"));
+    weapend = Number(GetCookie("player_weapend"));
+    player_atk = Number(GetCookie("player_atk"));
+    player_def = Number(GetCookie("player_def"));
+    player_avoid = Number(GetCookie("player_avoid"));
+    stage = Number(GetCookie("stage"));
+    money = Number(GetCookie("money"));
+    document.getElementById("show_status").innerHTML = player_Id + "，你目前的腳色資訊如下:" + "<br>金錢數 : " + money + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("show_stage").innerHTML = "所在層數 : " + stage;
     document.getElementById("summon_monster").style.display = 'block';
 }
@@ -293,10 +297,10 @@ function damage(obj, patk) {
 //防禦
 function defense(obj, pdef) {
     var e = evade(armor);
-    if (e == 1){
+    if (e == 1) {
         window.alert("閃躲成功!")
     }
-    if (e == 2){
+    if (e == 2) {
         if (obj.eatk <= pdef) {
             player_hp = player_hp - 1;
         }
@@ -304,17 +308,10 @@ function defense(obj, pdef) {
             player_hp = Number(player_hp) + (pdef - obj.eatk);
         }
     }
-    
+
 }
 
-function recover(){
-    if (mp >= 10){
-        magicrecover(mp, def);
-    }
-    if(hpbottle >= 1){
-        recoverhp(hpbottle, hp);
-    }
-}
+
 
 //魔法攻擊
 function magicattack(mp, edef) {
@@ -323,22 +320,28 @@ function magicattack(mp, edef) {
 }
 
 //魔法回復
-function magicrecover(mp, hp) {
-    mp = mp - 25;
-    hp = hp + 50
+function magicrecover() {
+    player_mp = player_mp - 25;
+    player_hp = player_hp + 50;
+    document.cookie = "player_mp=" + player_mp;
+    document.cookie = "player_hp=" + player_hp;
 }
 
 //回復血量瓶
-function recoverhp(hpbottle, hp){
-    if (hpbottle > 0){
+function recoverhp() {
+    hpbottle = Number(GetCookie("hpbottle"));
+    player_hp = Number(GetCookie("player_hp"));
+    if (hpbottle > 0) {
         hpbottle = hpbottle - 1;
-        hp = hp + 50;
+        player_hp = player_hp + 50;
     }
+    document.cookie = "player_hp=" + player_hp;
+    document.cookie = "hpbottle=" + hpbottle;
 }
 
 //回復魔力瓶
-function recovermp(mpbottle, mp){
-    if (mpbottle > 0){
+function recovermp(mpbottle, mp) {
+    if (mpbottle > 0) {
         mpbottle = mpbottle - 1;
         mp = mp + 50;
     }
@@ -461,6 +464,15 @@ function evade(armor) {
     }
 }
 
+
+function show_fighting_details() {
+    document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>角色魔力 : " + player_mp + "<br>總共已擊敗" + money + "隻怪物<br>";
+}
+
+function show_enemy_current_status(enemyhp) {
+    document.getElementById('show_enemy_current_status').innerHTML = "敵方血量 : " + enemyhp;
+}
+
 var monster;
 
 function summon() {
@@ -505,7 +517,8 @@ function summon() {
     }
     document.getElementById('show_enemy_details').innerHTML = "敵方資訊 : <br>" + monster.Get_Enemy_name() + "<br>攻擊力 : " + monster.Get_Enemy_atk() + "<br>防禦力 : " + monster.Get_Enemy_def();
     document.getElementById("arena").style.display = 'block';
-    document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + monster.Get_Enemy_def();
+    show_enemy_current_status(monster.Get_Enemy_def());
+    show_fighting_details();
 }
 
 var check = false;
@@ -520,23 +533,39 @@ function attack() {
     if (fight(enemy.eatk, enemy.edef, player_atk, player_def)) {
         window.alert("攻擊成功!!")
         damage(enemy, player_atk);
-        document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
         if (enemy.edef <= 0) {
             window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
             window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰")
             cnt++;
             money++;
+            document.cookie = "money=" + money;
         }
+        show_enemy_current_status(enemy.edef);
+        show_fighting_details();
     }
     else {
         window.alert("攻擊失敗!!");
         defense(enemy, player_def);
-        document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>敵方血量 : " + enemy.edef;
+        show_enemy_current_status(enemy.edef);
+        show_fighting_details();
     }
     if (cnt >= 5) {
         check = true;
     }
 }
+
+function recover() {
+    player_mp = Number(GetCookie("player_mp"));
+    hpbottle = Number(GetCookie("hpbottle"));
+    if (player_mp >= 10) {
+        magicrecover();
+    }
+    if (hpbottle >= 1 && player_mp < 10) {
+        recoverhp();
+    }
+    show_fighting_details();
+}
+
 
 function finished1() {
     stage = Number(GetCookie("stage"));
