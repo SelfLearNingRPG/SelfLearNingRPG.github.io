@@ -271,8 +271,8 @@ function show_current_status() {
 function fight(eatk, edef, patk, pdef) {
     var r0 = Math.round(Math.random(0.4) + 0.6);
     var enemyv = (Math.sqrt(eatk * eatk + edef * edef)) * r0//戰力指數
-    var r1 = Math.round(Math.random(1.5) + 0.5);
-    var r2 = 2.5 - r1;
+    var r1 = Math.round(Math.random(1) + 0.5);
+    var r2 = 1.5 - r1;
     var r3 = (r1 + r2) / 2;
     if (r2 >= r1) {
         r1 = r1 ^ r2;
