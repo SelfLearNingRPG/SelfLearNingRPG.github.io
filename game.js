@@ -545,31 +545,41 @@ var cnt = 0;
 
 
 function attack() {
-    check = false;
-    if (fight(current_eatk, current_edef, player_atk, player_def)) {
-        window.alert("攻擊成功!!");
-        current_edef = damage(current_edef, player_atk);
-        if (current_edef <= 0) {
-            window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!");
-            window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰");
-            cnt++;
-            money++;
-            kill++;
-            document.cookie = "money=" + money;
-            document.cookie = "kill=" + kill;
+    if (current_edef >= 0) {
+        check = false;
+        if (fight(current_eatk, current_edef, player_atk, player_def)) {
+            window.alert("攻擊成功!!");
+            current_edef = damage(current_edef, player_atk);
+            if (current_edef <= 0) {
+                window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!");
+                window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰");
+                cnt++;
+                money++;
+                kill++;
+                document.cookie = "money=" + money;
+                document.cookie = "kill=" + kill;
+            }
+        }
+        else {
+            window.alert("攻擊失敗!!");
+            defense(current_eatk, player_def);
+        }
+
+        show_enemy_current_status(current_edef);
+        show_fighting_details();
+
+        if (player_hp <= 0) {
+            window.location.href = "You_Died.html";
+        }
+
+        if (cnt >= 5) {
+            check = true;
         }
     }
     else {
-        window.alert("攻擊失敗!!");
-        defense(current_eatk, player_def);
+        window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰!!!");
     }
 
-    show_enemy_current_status(current_edef);
-    show_fighting_details();
-
-    if (cnt >= 5) {
-        check = true;
-    }
 }
 
 function recover() {
@@ -585,93 +595,105 @@ function recover() {
 }
 
 function enchancearmor() {
-    armor = Number(GetCookie("player_armor"));
-    money = Number(GetCookie("money"));
-    armor0 = Number(GetCookie("armor0"));
-    if (armor0 == 1) {
-        if (armor >= 1 && armor < 5) {
-            money = money - 10;
-            armor = armor + 1;
-            document.cookie = "money=" + money;
-            document.cookie = "player_armor=" + armor;
-            window.alert("成功升級防具!!!")
-            show_current_status();
+    if (money < 10) {
+        window.alert("錢錢不夠qAq")
+    }
+    else {
+        armor = Number(GetCookie("player_armor"));
+        money = Number(GetCookie("money"));
+        armor0 = Number(GetCookie("armor0"));
+        if (armor0 == 1) {
+            if (armor >= 1 && armor < 5) {
+                money = money - 10;
+                armor = armor + 1;
+                document.cookie = "money=" + money;
+                document.cookie = "player_armor=" + armor;
+                window.alert("成功升級防具!!!")
+                show_current_status();
+            }
+            else if (armor == 5) {
+                window.alert("已升級至最佳防具!!!")
+            }
         }
-        else if (armor == 5) {
-            window.alert("已升級至最佳防具!!!")
+        if (armor0 == 6) {
+            if (armor >= 6 && armor < 10) {
+                money = money - 10;
+                armor = armor + 1;
+                document.cookie = "money=" + money;
+                document.cookie = "player_armor=" + armor;
+                window.alert("成功升級防具!!!")
+                show_current_status();
+            }
+            else if (armor == 10) {
+                window.alert("已升級至最佳防具!!!")
+            }
+        }
+        if (armor0 == 11) {
+            if (armor >= 11 && armor < 15) {
+                money = money - 10;
+                armor = armor + 1;
+                document.cookie = "money=" + money;
+                document.cookie = "player_armor=" + armor;
+                window.alert("成功升級防具!!!")
+                show_current_status();
+            }
+            else if (armor == 15) {
+                window.alert("已升級至最佳防具!!!")
+            }
         }
     }
-    if (armor0 == 6) {
-        if (armor >= 6 && armor < 10) {
-            money = money - 10;
-            armor = armor + 1;
-            document.cookie = "money=" + money;
-            document.cookie = "player_armor=" + armor;
-            window.alert("成功升級防具!!!")
-            show_current_status();
-        }
-        else if (armor == 10) {
-            window.alert("已升級至最佳防具!!!")
-        }
-    }
-    if (armor0 == 11) {
-        if (armor >= 11 && armor < 15) {
-            money = money - 10;
-            armor = armor + 1;
-            document.cookie = "money=" + money;
-            document.cookie = "player_armor=" + armor;
-            window.alert("成功升級防具!!!")
-            show_current_status();
-        }
-        else if (armor == 15) {
-            window.alert("已升級至最佳防具!!!")
-        }
-    }
+
 }
 
 function enchanceweapend() {
-    armor = Number(GetCookie("player_weapend"));
-    money = Number(GetCookie("money"));
-    armor0 = Number(GetCookie("armor0"));
-    if (armor0 == 1) {
-        if (armor >= 1 && armor < 5) {
-            money = money - 10;
-            weapend = weapend + 1;
-            document.cookie = "money=" + money;
-            document.cookie = "player_weapend=" + weapend;
-            window.alert("成功升級武器!!!")
-            show_current_status();
+    if (money < 10) {
+        window.alert("錢錢不夠qAq")
+    }
+    else {
+        armor = Number(GetCookie("player_weapend"));
+        money = Number(GetCookie("money"));
+        armor0 = Number(GetCookie("armor0"));
+        if (armor0 == 1) {
+            if (armor >= 1 && armor < 5) {
+                money = money - 10;
+                weapend = weapend + 1;
+                document.cookie = "money=" + money;
+                document.cookie = "player_weapend=" + weapend;
+                window.alert("成功升級武器!!!")
+                show_current_status();
+            }
+            else if (weapend == 5) {
+                window.alert("已升級至最佳武器!!!")
+            }
         }
-        else if (weapend == 5) {
-            window.alert("已升級至最佳武器!!!")
+        if (armor0 == 6) {
+            if (armor >= 6 && armor < 10) {
+                money = money - 10;
+                weapend = weapend + 1;
+                document.cookie = "money=" + money;
+                document.cookie = "player_weapend=" + weapend;
+                window.alert("成功升級武器!!!")
+                show_current_status();
+            }
+            else if (weapend == 10) {
+                window.alert("已升級至最佳武器!!!")
+            }
+        }
+        if (armor0 == 11) {
+            if (armor >= 11 && armor < 15) {
+                money = money - 10;
+                weapend = weapend + 1;
+                document.cookie = "money=" + money;
+                document.cookie = "player_weapend=" + weapend;
+                window.alert("成功升級武器!!!")
+                show_current_status();
+            }
+            else if (weapend == 15) {
+                window.alert("已升級至最佳武器!!!")
+            }
         }
     }
-    if (armor0 == 6) {
-        if (armor >= 6 && armor < 10) {
-            money = money - 10;
-            weapend = weapend + 1;
-            document.cookie = "money=" + money;
-            document.cookie = "player_weapend=" + weapend;
-            window.alert("成功升級武器!!!")
-            show_current_status();
-        }
-        else if (weapend == 10) {
-            window.alert("已升級至最佳武器!!!")
-        }
-    }
-    if (armor0 == 11) {
-        if (armor >= 11 && armor < 15) {
-            money = money - 10;
-            weapend = weapend + 1;
-            document.cookie = "money=" + money;
-            document.cookie = "player_weapend=" + weapend;
-            window.alert("成功升級武器!!!")
-            show_current_status();
-        }
-        else if (weapend == 15) {
-            window.alert("已升級至最佳武器!!!")
-        }
-    }
+
 }
 
 function finished1() {
@@ -680,7 +702,7 @@ function finished1() {
         window.alert("正在確認通關資格...通過!!!前往下一層吧!!!");
         stage = stage + 1;
         document.cookie = "stage=" + stage;
-        if (stage == 11) {
+        if (stage == 13) {
             window.location.href = "ending.html";
         }
         else {
@@ -693,3 +715,8 @@ function finished1() {
     }
 }
 
+function reStart() {
+    stage = 1;
+    document.cookie = "stage=" + stage;
+    window.location.href = "stages.html";
+}
