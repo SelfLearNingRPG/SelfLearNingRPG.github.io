@@ -166,6 +166,7 @@ e[23] = new enemyinfo("高階惡魔-阿斯摩太", 80, 80);
 e[24] = new enemyinfo("魔王-別西卜", 120, 80);
 e[25] = new enemyinfo("邪龍-尼德霍格", 80, 150);
 
+var armor0, weapend0;
 
 function init() {
     var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -177,6 +178,8 @@ function init() {
         hpbottle = 2;
         mpbottle = 0;
         money = 0;
+        armor0 = 1;
+        weapend0 = 1;
     }
     if (pro == "1") {
         player_mp = 50;
@@ -186,6 +189,8 @@ function init() {
         hpbottle = 1;
         mpbottle = 0;
         money = 0;
+        armor0 = 6;
+        weapend0 = 6;
     }
     if (pro == "2") {
         player_mp = 75;
@@ -195,7 +200,17 @@ function init() {
         hpbottle = 0;
         mpbottle = 1;
         money = 0;
+        armor0 = 11;
+        weapend0 = 11;
     }
+
+    function enchanceweapend(){
+        if (armor0 == 1){
+            money = money -10;
+            armor = armor + 1;
+        }
+    }
+    
     player_atk += w[weapend].Get_Wapend_atk();
     player_def += a[armor].Get_Armor_def();
     player_avoid += a[armor].Get_Armor_avoid();
@@ -257,7 +272,7 @@ function fight(eatk, edef, patk, pdef) {
     var r0 = Math.round(Math.random(0.4) + 0.6);
     var enemyv = (Math.sqrt(eatk * eatk + edef * edef)) * r0//戰力指數
     var r1 = Math.round(Math.random(1.5) + 0.5);
-    var r2 = 1.6 - r1;
+    var r2 = 2.5 - r1;
     var r3 = (r1 + r2) / 2;
     if (r2 >= r1) {
         r1 = r1 ^ r2;
@@ -580,3 +595,4 @@ function finished1() {
         window.alert("擊敗五隻怪物才能繼續前進唷")
     }
 }
+
