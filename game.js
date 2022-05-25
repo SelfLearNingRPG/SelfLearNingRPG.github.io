@@ -248,7 +248,7 @@ function show_current_status() {
 //攻擊成功與否
 function fight(eatk, edef, patk, pdef) {
     var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
-    var r1 = Math.round(Math.random(1.3) + 0.7);
+    var r1 = Math.round(Math.random(2.2) + 0.3);
     var r2 = 1.6 - r1;
     var r3 = (r1 + r2) / 2;
     if (r2 >= r1) {
@@ -289,11 +289,27 @@ function damage(obj, patk) {
 
 //防禦
 function defense(obj, pdef) {
-    if (obj.eatk <= pdef) {
-        player_hp = player_hp - 1;
+    var e = evade(armor);
+    if (e == 1){
+        window.alert("閃躲成功!")
     }
-    if (obj.eatk > pdef) {
-        player_hp = Number(player_hp) + (pdef - obj.eatk);
+    if (e == 2){
+        if (obj.eatk <= pdef) {
+            player_hp = player_hp - 1;
+        }
+        if (obj.eatk > pdef) {
+            player_hp = Number(player_hp) + (pdef - obj.eatk);
+        }
+    }
+    
+}
+
+function recover(){
+    if (mp >= 10){
+        magicrecover(mp, def);
+    }
+    if(hpbottle >= 1){
+        recoverhp(hpbottle, hp);
     }
 }
 
@@ -304,13 +320,13 @@ function magicattack(mp, edef) {
 }
 
 //魔法回復
-function magicrecover() {
+function magicrecover(mp, hp) {
     mp = mp - 25;
     hp = hp + 50
 }
 
 //回復血量瓶
-function recoverhp(){
+function recoverhp(hpbottle, hp){
     if (hpbottle > 0){
         hpbottle = hpbottle - 1;
         hp = hp + 50;
@@ -318,7 +334,7 @@ function recoverhp(){
 }
 
 //回復魔力瓶
-function recovermp(){
+function recovermp(mpbottle, mp){
     if (mpbottle > 0){
         mpbottle = mpbottle - 1;
         mp = mp + 50;
@@ -331,113 +347,113 @@ function enemyRandom(min, max) {
 }
 
 //迴避成功與否
-function evade() {
+function evade(armor) {
     if (armor == 4) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 10) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 5) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 25) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 6) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 50) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 7) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 60) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 8) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 70) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 9) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 80) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 10) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 90) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 11) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 20) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 12) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 25) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 13) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 30) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 14) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 35) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
     if (armor == 15) {
         var avoidv = Math.round(Math.random() * 100);
         if (avoidv <= 40) {
-            return true;
+            return 1;
         }
         else {
-            return false;
+            return 2;
         }
     }
 }
