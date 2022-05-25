@@ -143,9 +143,9 @@ var e = new Array();//enemy
 e[1] = new enemyinfo("老鼠", 3, 5);
 e[2] = new enemyinfo("蝙蝠", 5, 3);
 e[3] = new enemyinfo("蜘蛛", 4, 4);
-e[4] = new enemyinfo("史萊姆", 9, 7);
-e[5] = new enemyinfo("殭屍", 7, 9);
-e[6] = new enemyinfo("巨狼蛛", 8, 8);
+e[4] = new enemyinfo("史萊姆", 10, 7);
+e[5] = new enemyinfo("殭屍", 7, 10);
+e[6] = new enemyinfo("巨狼蛛", 9, 9);
 e[7] = new enemyinfo("骷髏", 10, 12);
 e[8] = new enemyinfo("哥布林", 12, 10);
 e[9] = new enemyinfo("魔像", 8, 14);
@@ -254,8 +254,9 @@ function show_current_status() {
 
 //攻擊成功與否
 function fight(eatk, edef, patk, pdef) {
-    var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
-    var r1 = Math.round(Math.random(2.2) + 0.3);
+    var r0 = Math.round(Math.random(0.4) + 0.6);
+    var enemyv = (Math.sqrt(eatk * eatk + edef * edef)) * r0//戰力指數
+    var r1 = Math.round(Math.random(1.5) + 0.5);
     var r2 = 1.6 - r1;
     var r3 = (r1 + r2) / 2;
     if (r2 >= r1) {
