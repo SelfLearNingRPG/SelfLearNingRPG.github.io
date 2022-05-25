@@ -306,22 +306,22 @@ function fight(eatk, edef, patk, pdef) {
 }
 
 //傷害
-function damage(obj, patk) {
-    obj.edef = obj.edef - patk;
+function damage(edef, patk) {
+    return edef - patk;
 }
 
 //防禦
-function defense(obj, pdef) {
+function defense(eatk, pdef) {
     var e = evade(armor);
     if (e == 1) {
         window.alert("閃躲成功!")
     }
     if (e == 2) {
-        if (obj.eatk <= pdef) {
+        if (eatk <= pdef) {
             player_hp = player_hp - 1;
         }
-        if (obj.eatk > pdef) {
-            player_hp = Number(player_hp) + (pdef - obj.eatk);
+        if (eatk > pdef) {
+            player_hp = Number(player_hp) + (pdef - eatk);
         }
     }
 
@@ -490,7 +490,8 @@ function show_enemy_current_status(enemyhp) {
 }
 
 var monster;
-
+var current_edef;
+var current_eatk;
 function summon() {
     var stage = Number(document.cookie.replace(/(?:(?:^|.*;\s*)stage\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
     switch (stage) {
@@ -535,38 +536,37 @@ function summon() {
     document.getElementById("arena").style.display = 'block';
     show_enemy_current_status(monster.Get_Enemy_def());
     show_fighting_details();
+    current_edef = monster.Get_Enemy_def();
+    current_eatk = monster.Get_Enemy_atk();
 }
 
 var check = false;
 var cnt = 0;
+
+
 function attack() {
     check = false;
-    var enemy = {
-        edef: monster.Get_Enemy_def(),
-        eatk: monster.Get_Enemy_atk()
-    }
-
-    if (fight(enemy.eatk, enemy.edef, player_atk, player_def)) {
-        window.alert("攻擊成功!!")
-        damage(enemy, player_atk);
-        if (enemy.edef <= 0) {
-            window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
-            window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰")
+    if (fight(current_eatk, current_edef, player_atk, player_def)) {
+        window.alert("攻擊成功!!");
+        current_edef = damage(current_edef, player_atk);
+        if (current_edef <= 0) {
+            window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!");
+            window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰");
             cnt++;
             money++;
             kill++;
             document.cookie = "money=" + money;
             document.cookie = "kill=" + kill;
         }
-        show_enemy_current_status(enemy.edef);
-        show_fighting_details();
     }
     else {
         window.alert("攻擊失敗!!");
-        defense(enemy, player_def);
-        show_enemy_current_status(enemy.edef);
-        show_fighting_details();
+        defense(current_eatk, player_def);
     }
+
+    show_enemy_current_status(current_edef);
+    show_fighting_details();
+
     if (cnt >= 5) {
         check = true;
     }
@@ -680,7 +680,13 @@ function finished1() {
         window.alert("正在確認通關資格...通過!!!前往下一層吧!!!");
         stage = stage + 1;
         document.cookie = "stage=" + stage;
-        location.reload();
+        if (stage == 11) {
+            window.location.href = "ending.html";
+        }
+        else {
+            location.reload();
+        }
+
     }
     else {
         window.alert("擊敗五隻怪物才能繼續前進唷")
