@@ -248,7 +248,7 @@ function show_current_status() {
 //攻擊成功與否
 function fight(eatk, edef, patk, pdef) {
     var enemyv = Math.sqrt(eatk * eatk + edef * edef)//戰力指數
-    var r1 = Math.round(Math.random(1.3) + 0.3);
+    var r1 = Math.round(Math.random(1.3) + 0.7);
     var r2 = 1.6 - r1;
     var r3 = (r1 + r2) / 2;
     if (r2 >= r1) {
