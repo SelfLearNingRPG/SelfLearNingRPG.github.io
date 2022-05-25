@@ -151,7 +151,7 @@ e[8] = new enemyinfo("哥布林", 12, 10);
 e[9] = new enemyinfo("魔像", 8, 14);
 e[10] = new enemyinfo("哥布林薩滿", 15, 15);
 e[11] = new enemyinfo("冤魂", 24, 6);
-e[12] = new enemyinfo("盔甲小兵", 25, 25);
+e[12] = new enemyinfo("盔甲小兵", 5, 25);
 e[13] = new enemyinfo("小boss「盔甲騎兵」", 30, 35);
 e[14] = new enemyinfo("盔甲劍士", 25, 30);
 e[15] = new enemyinfo("盔甲弓箭手", 35, 25);
@@ -166,7 +166,7 @@ e[23] = new enemyinfo("高階惡魔-阿斯摩太", 80, 80);
 e[24] = new enemyinfo("魔王-別西卜", 120, 80);
 e[25] = new enemyinfo("邪龍-尼德霍格", 80, 150);
 
-var armor0, weapend0;
+var armor0;
 
 function init() {
     var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -179,7 +179,6 @@ function init() {
         mpbottle = 0;
         money = 0;
         armor0 = 1;
-        weapend0 = 1;
     }
     if (pro == "1") {
         player_mp = 50;
@@ -190,7 +189,6 @@ function init() {
         mpbottle = 0;
         money = 0;
         armor0 = 6;
-        weapend0 = 6;
     }
     if (pro == "2") {
         player_mp = 75;
@@ -201,13 +199,35 @@ function init() {
         mpbottle = 1;
         money = 0;
         armor0 = 11;
-        weapend0 = 11;
     }
 
     function enchanceweapend(){
         if (armor0 == 1){
             money = money -10;
             armor = armor + 1;
+        }
+        if (armor0 == 6){
+            money = money -10;
+            armor = armor + 1;
+        }
+        if (armor0 == 11){
+            money = money -10;
+            armor = armor + 1;
+        }
+    }
+
+    function enchancearmor(){
+        if (armor0 == 1){
+            money = money -10;
+            weapend = weapend + 1;
+        }
+        if (armor0 == 6){
+            money = money -10;
+            weapend = weapend + 1;
+        }
+        if (armor0 == 11){
+            money = money -10;
+            weapend = weapend + 1;
         }
     }
     
