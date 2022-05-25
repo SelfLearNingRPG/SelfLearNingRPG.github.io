@@ -44,7 +44,7 @@ function Confirm() {
 
 
 
-var armor, weapend, def, atk, avoid, hpbottle, mpbottle;
+var armor, weapend, def, atk, avoid, hpbottle, mpbottle,money;
 
 class armorinfo {
 
@@ -176,6 +176,7 @@ function init() {
         weapend = 1;
         hpbottle = 2;
         mpbottle = 0;
+        money = 0;
     }
     if (pro == "1") {
         player_mp = 50;
@@ -184,6 +185,7 @@ function init() {
         weapend = 6;
         hpbottle = 1;
         mpbottle = 0;
+        money = 0;
     }
     if (pro == "2") {
         player_mp = 75;
@@ -192,6 +194,7 @@ function init() {
         weapend = 11;
         hpbottle = 0;
         mpbottle = 1;
+        money = 0;
     }
     player_atk += w[weapend].Get_Wapend_atk();
     player_def += a[armor].Get_Armor_def();
@@ -522,6 +525,7 @@ function attack() {
             window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!")
             window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰")
             cnt++;
+            money++;
         }
     }
     else {
