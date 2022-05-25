@@ -200,37 +200,6 @@ function init() {
         money = 0;
         armor0 = 11;
     }
-
-    function enchanceweapend(){
-        if (armor0 == 1){
-            money = money -10;
-            armor = armor + 1;
-        }
-        if (armor0 == 6){
-            money = money -10;
-            armor = armor + 1;
-        }
-        if (armor0 == 11){
-            money = money -10;
-            armor = armor + 1;
-        }
-    }
-
-    function enchancearmor(){
-        if (armor0 == 1){
-            money = money -10;
-            weapend = weapend + 1;
-        }
-        if (armor0 == 6){
-            money = money -10;
-            weapend = weapend + 1;
-        }
-        if (armor0 == 11){
-            money = money -10;
-            weapend = weapend + 1;
-        }
-    }
-    
     player_atk += w[weapend].Get_Wapend_atk();
     player_def += a[armor].Get_Armor_def();
     player_avoid += a[armor].Get_Armor_avoid();
@@ -244,7 +213,10 @@ function init() {
     document.cookie = "hpbottle=" + hpbottle;
     document.cookie = "mpbottle=" + mpbottle;
     document.cookie = "money=" + money;
+    document.cookie = "armor0=" + armor0;
 }
+
+
 
 var stage = 1;
 
@@ -282,6 +254,9 @@ function show_current_status() {
     player_avoid = Number(GetCookie("player_avoid"));
     stage = Number(GetCookie("stage"));
     money = Number(GetCookie("money"));
+    player_atk = w[weapend].Get_Wapend_atk();
+    player_def = a[armor].Get_Armor_def();
+    player_avoid = a[armor].Get_Armor_avoid();
     document.getElementById("show_status").innerHTML = player_Id + "，你目前的腳色資訊如下:" + "<br>金錢數 : " + money + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("show_stage").innerHTML = "所在層數 : " + stage;
     document.getElementById("summon_monster").style.display = 'block';
@@ -602,6 +577,89 @@ function recover() {
     show_fighting_details();
 }
 
+function enchancearmor() {
+    armor = Number(GetCookie("player_armor"));
+    money = Number(GetCookie("money"));
+    armor0 = Number(GetCookie("armor0"));
+    if (armor0 == 1) {
+        if (armor >= 1 && armor <= 5) {
+            money = money - 10;
+            armor = armor + 1;
+            document.cookie = "money=" + money;
+            document.cookie = "player_armor=" + armor;
+            window.alert("成功升級裝備，裝備將在下一層生效!!!")
+        }
+        else {
+            window.alert("已升級至最佳裝備!!!")
+        }
+    }
+    if (armor0 == 6) {
+        if (armor >= 6 && armor <= 10) {
+            money = money - 10;
+            armor = armor + 1;
+            document.cookie = "money=" + money;
+            document.cookie = "player_armor=" + armor;
+            window.alert("成功升級裝備，裝備將在下一層生效!!!")
+        }
+        else {
+            window.alert("已升級至最佳裝備!!!")
+        }
+    }
+    if (armor0 == 11) {
+        if (armor >= 11 && armor <= 15) {
+            money = money - 10;
+            armor = armor + 1;
+            document.cookie = "money=" + money;
+            document.cookie = "player_armor=" + armor;
+            window.alert("成功升級裝備，裝備將在下一層生效!!!")
+        }
+        else {
+            window.alert("已升級至最佳裝備!!!")
+        }
+    }
+}
+
+function enchanceweapend() {
+    armor = Number(GetCookie("player_weapend"));
+    money = Number(GetCookie("money"));
+    armor0 = Number(GetCookie("armor0"));
+    if (armor0 == 1) {
+        if (armor >= 1 && armor <= 5) {
+            money = money - 10;
+            weapend = weapend + 1;
+            document.cookie = "money=" + money;
+            document.cookie = "player_weapend=" + weapend;
+            window.alert("成功升級裝備，裝備將在下一層生效!!!")
+        }
+        else {
+            window.alert("已升級至最佳裝備!!!")
+        }
+    }
+    if (armor0 == 6) {
+        if (armor >= 6 && armor <= 10) {
+            money = money - 10;
+            weapend = weapend + 1;
+            document.cookie = "money=" + money;
+            document.cookie = "player_weapend=" + weapend;
+            window.alert("成功升級裝備，裝備將在下一層生效!!!")
+        }
+        else {
+            window.alert("已升級至最佳裝備!!!")
+        }
+    }
+    if (armor0 == 11) {
+        if (armor >= 11 && armor <= 15) {
+            money = money - 10;
+            weapend = weapend + 1;
+            document.cookie = "money=" + money;
+            document.cookie = "player_weapend=" + weapend;
+            window.alert("成功升級裝備，裝備將在下一層生效!!!")
+        }
+        else {
+            window.alert("已升級至最佳裝備!!!")
+        }
+    }
+}
 
 function finished1() {
     stage = Number(GetCookie("stage"));
