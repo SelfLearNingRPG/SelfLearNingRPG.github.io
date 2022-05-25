@@ -716,7 +716,5 @@ function finished1() {
 }
 
 function reStart() {
-    stage = 1;
-    document.cookie = "stage=" + stage;
-    window.location.href = "stages.html";
+    window.location.href = "page2.html";
 }
