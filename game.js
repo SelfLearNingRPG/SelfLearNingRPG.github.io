@@ -107,37 +107,37 @@ class enemyinfo {
 
 var a = new Array();//armor
 a[1] = new armorinfo("鐵甲", 5, 0);
-a[2] = new armorinfo("浴火", 24, 0);
-a[3] = new armorinfo("戰鬼", 65, 0);
-a[4] = new armorinfo("浴血之王", 88, 0);
-a[5] = new armorinfo("狂戰士之魂", 110, 25);
+a[2] = new armorinfo("浴火", 20, 0);
+a[3] = new armorinfo("戰鬼", 43, 0);
+a[4] = new armorinfo("浴血之王", 65, 0);
+a[5] = new armorinfo("狂戰士之魂", 88, 25);
 a[6] = new armorinfo("刺客鏈甲", 1, 50);
-a[7] = new armorinfo("黑羽", 17, 60);
-a[8] = new armorinfo("死之盔", 40, 70);
-a[9] = new armorinfo("惡魔之夜", 67, 80);
+a[7] = new armorinfo("黑羽", 11, 60);
+a[8] = new armorinfo("死之盔", 32, 70);
+a[9] = new armorinfo("惡魔之夜", 55, 80);
 a[10] = new armorinfo("墮天黑影", 80, 90);
 a[11] = new armorinfo("神聖法袍", 7, 20);
-a[12] = new armorinfo("淨化者", 23, 25);
-a[13] = new armorinfo("大魔導之護", 57, 30);
-a[14] = new armorinfo("法王聖袍", 80, 35);
-a[15] = new armorinfo("神天", 100, 40);
+a[12] = new armorinfo("淨化者", 16, 25);
+a[13] = new armorinfo("大魔導之護", 37, 30);
+a[14] = new armorinfo("法王聖袍", 60, 35);
+a[15] = new armorinfo("神天", 84, 40);
 
 var w = new Array();//wapend
 w[1] = new wapendinfo("騎士大劍", 10);
-w[2] = new wapendinfo("斬鬼刀", 27);
-w[3] = new wapendinfo("火龍王", 40);
-w[4] = new wapendinfo("龍牙", 66);
-w[5] = new wapendinfo("斬龍刀", 85);
+w[2] = new wapendinfo("斬鬼刀", 18);
+w[3] = new wapendinfo("龍牙", 30);
+w[4] = new wapendinfo("火龍王", 46);
+w[5] = new wapendinfo("龍焰斷首", 68);
 w[6] = new wapendinfo("蛇牙彎刀", 13);
-w[7] = new wapendinfo("惡魔兇刀", 35);
-w[8] = new wapendinfo("黑羽刺刀", 60);
-w[9] = new wapendinfo("暗龍王", 84);
-w[10] = new wapendinfo("屠神匕首", 100);
+w[7] = new wapendinfo("惡魔兇刀", 25);
+w[8] = new wapendinfo("黑羽刺刀", 40);
+w[9] = new wapendinfo("暗龍王", 64);
+w[10] = new wapendinfo("屠神匕首", 85);
 w[11] = new wapendinfo("法杖", 11);
-w[12] = new wapendinfo("白鷹之杖", 33);
-w[13] = new wapendinfo("水龍王", 50);
-w[14] = new wapendinfo("法王之杖", 72);
-w[15] = new wapendinfo("神之手", 90);
+w[12] = new wapendinfo("白鷹之杖", 21);
+w[13] = new wapendinfo("水龍王", 35);
+w[14] = new wapendinfo("法王之杖", 53);
+w[15] = new wapendinfo("神之手", 72);
 
 var e = new Array();//enemy
 e[1] = new enemyinfo("老鼠", 3, 5);
@@ -307,7 +307,12 @@ function fight(eatk, edef, patk, pdef) {
 
 //傷害
 function damage(edef, patk) {
-    return edef - patk;
+    if(patk > edef){
+        return edef - patk + edef;
+    }
+    else{
+        return edef - 1;
+    }
 }
 
 //防禦
