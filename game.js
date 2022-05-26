@@ -335,8 +335,8 @@ function defense(eatk, pdef) {
 
 
 //魔法攻擊
-function magicattack(mp, edef) {
-    mp = mp - 10;
+function magicattack(edef) {
+    player_mp = player_mp - 10;
     edef = edef - 50;
 }
 
