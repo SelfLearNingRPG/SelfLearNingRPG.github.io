@@ -307,10 +307,10 @@ function fight(eatk, edef, patk, pdef) {
 
 //傷害
 function damage(edef, patk) {
-    if(patk > edef){
+    if (patk > edef) {
         return edef - patk + edef;
     }
-    else{
+    else {
         return edef - 1;
     }
 }
@@ -356,7 +356,7 @@ function recoverhp() {
         hpbottle = hpbottle - 1;
         player_hp = player_hp + 50;
     }
-    else{
+    else {
         window.alert("瓶子空了...")
     }
     document.cookie = "player_hp=" + player_hp;
@@ -371,7 +371,7 @@ function recovermp(mpbottle) {
         mpbottle = mpbottle - 1;
         player_mp = player_mp + 50;
     }
-    else{
+    else {
         window.alert("瓶子空了...")
     }
     document.cookie = "player_mp=" + player_mp;
@@ -587,7 +587,7 @@ function attack() {
             window.location.href = "You_Died.html";
         }
 
-        if (cnt >= 5) {
+        if ((stage == 12 && cnt >= 1) || (stage == 6 && cnt >= 1) || cnt >= 5) {
             check = true;
         }
     }
@@ -597,7 +597,8 @@ function attack() {
 
 }
 
-function magicattack(){
+function magicattack() {
+    stage = Number(GetCookie("stage"));
     if (current_edef >= 0) {
         check = false;
 
@@ -614,7 +615,7 @@ function magicattack(){
         show_enemy_current_status(current_edef);
         show_fighting_details();
 
-        if (cnt >= 5) {
+        if (cnt >= 5 || (stage == 6 && cnt >= 1)) {
             check = true;
         }
     }
@@ -746,10 +747,15 @@ function finished1() {
         if (stage == 13) {
             window.location.href = "ending.html";
         }
+        else if (stage == 6 || stage == 12) {
+            window.location.href = "boss1.html";
+        }
+        else if (stage == 7) {
+            window.location.href = "stages.html";
+        }
         else {
             location.reload();
         }
-
     }
     else {
         window.alert("擊敗五隻怪物才能繼續前進唷")
