@@ -757,5 +757,5 @@ function finished1() {
 }
 
 function reStart() {
-    window.location.href = "page2.html";
+    window.location.href = "index.html";
 }
