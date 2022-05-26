@@ -335,9 +335,9 @@ function defense(eatk, pdef) {
 
 
 //魔法攻擊
-function magicattack(edef) {
+function magicdamage(edef) {
     player_mp = player_mp - 10;
-    edef = edef - 50;
+    return edef - 50;
 }
 
 //魔法回復
@@ -356,16 +356,26 @@ function recoverhp() {
         hpbottle = hpbottle - 1;
         player_hp = player_hp + 50;
     }
+    else{
+        window.alert("瓶子空了...")
+    }
     document.cookie = "player_hp=" + player_hp;
     document.cookie = "hpbottle=" + hpbottle;
 }
 
 //回復魔力瓶
-function recovermp(mpbottle, mp) {
+function recovermp(mpbottle) {
+    mpbottle = Number(GetCookie("mpbottle"));
+    player_mp = Number(GetCookie("player_mp"));
     if (mpbottle > 0) {
         mpbottle = mpbottle - 1;
-        mp = mp + 50;
+        player_mp = player_mp + 50;
     }
+    else{
+        window.alert("瓶子空了...")
+    }
+    document.cookie = "player_mp=" + player_mp;
+    document.cookie = "mpbottle=" + mpbottle;
 }
 
 //隨機召喚怪物
@@ -585,6 +595,32 @@ function attack() {
         window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰!!!");
     }
 
+}
+
+function magicattack(){
+    if (current_edef >= 0) {
+        check = false;
+
+        current_edef = magicdamage(current_edef);
+        if (current_edef <= 0) {
+            window.alert("成功擊敗" + monster.Get_Enemy_name() + "了!!");
+            window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰");
+            cnt++;
+            money++;
+            kill++;
+            document.cookie = "money=" + money;
+            document.cookie = "kill=" + kill;
+        }
+        show_enemy_current_status(current_edef);
+        show_fighting_details();
+
+        if (cnt >= 5) {
+            check = true;
+        }
+    }
+    else {
+        window.alert("怪物已經死亡，請點擊「召喚怪物」召喚一隻新的來挑戰!!!");
+    }
 }
 
 function recover() {
