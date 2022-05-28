@@ -329,7 +329,7 @@ function defense(eatk, pdef) {
             player_hp = Number(player_hp) + (pdef - eatk);
         }
     }
-
+    document.cookie = "player_hp=" + player_hp;
 }
 
 
@@ -337,6 +337,7 @@ function defense(eatk, pdef) {
 //魔法攻擊
 function magicdamage(edef) {
     player_mp = player_mp - 10;
+    document.cookie = "player_mp=" + player_mp;
     return edef - 50;
 }
 
