@@ -243,7 +243,16 @@ function begin() {
     init();
     var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     document.getElementById("show_own_side_status").style.display = 'block';
-    document.getElementById('show_own_side_status').innerHTML = player_Id + "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" + "<br>金錢數 : " + money + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    document.getElementById('show_own_side_status').innerHTML = player_Id +
+        "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" +
+        "<br>金錢數 : " + money + "<br>防具 : " +
+        a[armor].Get_Armor_name() +
+        "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" +
+        "<br>武器 : " + w[weapend].Get_Wapend_name() +
+        "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" +
+        "<br>MP : " + player_mp + "<br>HP : " +
+        player_hp + "<br>攻擊力 : " + player_atk +
+        "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("show_begin_botton").style.display = 'block';
     document.cookie = "stage=" + stage;
 }
@@ -267,7 +276,17 @@ function show_current_status() {
     player_atk = w[weapend].Get_Wapend_atk();
     player_def = a[armor].Get_Armor_def();
     player_avoid = a[armor].Get_Armor_avoid();
-    document.getElementById("show_status").innerHTML = player_Id + "，你目前的腳色資訊如下:" + "<br>金錢數 : " + money + "<br>防具 : " + a[armor].Get_Armor_name() + "(防禦力+" + a[armor].Get_Armor_def() + "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" + "<br>武器 : " + w[weapend].Get_Wapend_name() + "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" + "<br>MP : " + player_mp + "<br>HP : " + player_hp + "<br>攻擊力 : " + player_atk + "<br>防禦力 : " + player_def + "<br>迴避率 : " + player_avoid + "%";
+    document.getElementById("show_status").innerHTML = player_Id +
+        "，你目前的腳色資訊如下:" +
+        "<br>金錢數 : " + money +
+        "<br>防具 : " + a[armor].Get_Armor_name() +
+        "(防禦力+" + a[armor].Get_Armor_def() +
+        "、迴避率+" + a[armor].Get_Armor_avoid() + "%)" +
+        "<br>武器 : " + w[weapend].Get_Wapend_name() +
+        "(攻擊力+" + w[weapend].Get_Wapend_atk() + ")" +
+        "<br>MP : " + player_mp + "<br>HP : " + player_hp +
+        "<br>攻擊力 : " + player_atk + "<br>防禦力 : " +
+        player_def + "<br>迴避率 : " + player_avoid + "%";
     document.getElementById("show_stage").innerHTML = "所在層數 : " + stage;
     document.getElementById("summon_monster").style.display = 'block';
 }
@@ -503,7 +522,10 @@ function evade(armor) {
 
 
 function show_fighting_details() {
-    document.getElementById('show_fighting_details').innerHTML = "角色血量 : " + player_hp + "<br>角色魔力 : " + player_mp + "<br>總共已擊敗" + kill + "隻怪物<br>";
+    document.getElementById('show_fighting_details').innerHTML =
+        "角色血量 : " + player_hp +
+        "<br>角色魔力 : " + player_mp +
+        "<br>總共已擊敗" + kill + "隻怪物<br>";
 }
 
 function show_enemy_current_status(enemyhp) {
@@ -553,7 +575,10 @@ function summon() {
             monster = e[enemyRandom(24, 25)];
             break;
     }
-    document.getElementById('show_enemy_details').innerHTML = "敵方資訊 : <br>" + monster.Get_Enemy_name() + "<br>攻擊力 : " + monster.Get_Enemy_atk() + "<br>防禦力 : " + monster.Get_Enemy_def();
+    document.getElementById('show_enemy_details').innerHTML =
+        "敵方資訊 : <br>" + monster.Get_Enemy_name() +
+        "<br>攻擊力 : " + monster.Get_Enemy_atk() +
+        "<br>防禦力 : " + monster.Get_Enemy_def();
     document.getElementById("arena").style.display = 'block';
     show_enemy_current_status(monster.Get_Enemy_def());
     show_fighting_details();
