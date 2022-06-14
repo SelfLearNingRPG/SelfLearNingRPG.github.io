@@ -174,7 +174,7 @@ e[25] = new enemyinfo("邪龍-尼德霍格", 80, 150);
 var armor0;
 
 function init() {
-    var pro = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    var pro = GetCookie("player_Pro");
     if (pro == "0") {
         player_mp = 30;
         player_hp = 100;
@@ -230,7 +230,7 @@ function init() {
 var stage = 1;
 
 function begin() {
-    var zy = document.cookie.replace(/(?:(?:^|.*;\s*)player_Pro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    var zy = GetCookie("player_Pro");
     if (zy == "0") {
         zy = "騎士";
     }
@@ -241,7 +241,7 @@ function begin() {
         zy = "法師";
     }
     init();
-    var player_Id = document.cookie.replace(/(?:(?:^|.*;\s*)player_Id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    var player_Id = GetCookie("player_Id");
     document.getElementById("show_own_side_status").style.display = 'block';
     document.getElementById('show_own_side_status').innerHTML = player_Id +
         "，你是一個「" + zy + "」<br>你目前的腳色資訊如下:" +
@@ -536,7 +536,7 @@ var monster;
 var current_edef;
 var current_eatk;
 function summon() {
-    var stage = Number(document.cookie.replace(/(?:(?:^|.*;\s*)stage\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+    var stage = GetCookie("stage");
     switch (stage) {
         case 1:
             monster = e[enemyRandom(1, 3)];
